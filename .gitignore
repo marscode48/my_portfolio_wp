@@ -1,0 +1,21 @@
+Thumbs.db
+.DS_Store
+*.log
+
+/wp-config.php
+/.htaccess
+/.htpasswd
+/index.php
+/license.txt
+/readme.html
+/wp-*.php
+/xmlrpc.php
+/wp-admin/*
+/wp-content/*
+!/wp-content/themes
+/wp-content/themes/*
+!/wp-content/themes/mc
+/wp-content/themes/mc/css/.sass-cache/*
+/wp-includes/*
+
+# my-theme の部分を利用するテーマ名に変更
