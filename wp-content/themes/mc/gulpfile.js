@@ -14,7 +14,7 @@ const browserSync = require('browser-sync').create();
 const isProd = process.env.NODE_ENV === "production";
 
 //----------------------------------------------------------------------
-//  関数定義
+//  関数定義（WordPress用）distへ出力せずにテーマ直下に出力、browserSyncのproxyにLocalのサイトドメインを設定
 //----------------------------------------------------------------------
 function icon(done) {
   for (let size of sizes){
@@ -30,7 +30,7 @@ function icon(done) {
       upscale: false
     }))
     .pipe($.rename(`favicon-${width}x${height}.png`))
-    .pipe(dest('./dist/images/icon'));
+    .pipe(dest('./images/icon'));
   }
   done();
 }
@@ -68,7 +68,7 @@ function imagemin() {
       ]
     })
   ]))
-  .pipe(dest("./dist/images"));
+  .pipe(dest("./images"));
 }
 
 function styles() {
@@ -85,7 +85,7 @@ function styles() {
     }))
     .pipe($.if(!isProd, $.sourcemaps.write('./')))
     .pipe($.if(isProd, $.postcss([cssnano({ autoprefixer: false })])))
-    .pipe(dest('./dist/css'))
+    .pipe(dest('./'))
     .pipe($.debug({title: 'scss dest:'}));
 }
 
@@ -95,7 +95,7 @@ function scripts() {
     // .pipe($.babel())
     .pipe($.if(!isProd, $.sourcemaps.write('./')))
     .pipe($.if(isProd, $.uglify()))
-    .pipe(dest('./dist/js'));
+    .pipe(dest('./js'));
 }
 
 function lint() {
@@ -118,18 +118,22 @@ function extras() {
     './src/audio/**',
   ], {
     base: 'src'
-  }).pipe(dest('./dist'));
+  }).pipe(dest('./'));
 }
 
 function clean() {
-  return del(['./dist']);
+  return del([
+    './css',
+    './images',
+    './js',
+    './*.html',
+    './*.php'
+  ]);
 }
 
 function startAppServer() {
   browserSync.init({
-    server: {
-      baseDir: "dist",
-    },
+    proxy : "mars-code.local", // Localのサイトドメインに合わせる
   });
 
   watch('./src/sass/**/*.scss', styles);
