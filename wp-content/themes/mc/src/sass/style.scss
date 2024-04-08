@@ -1,3 +1,4 @@
+@use 'parts/wp-themename'; // WordPressテーマ名
 @use "pages/home"; // トップ画面スタイル（ページ毎に作成）
 @use "pages/works"; // ワークス画面スタイル（ページ毎に作成）
 @use "pages/article"; // 個別投稿画面スタイル（ページ毎に作成）
