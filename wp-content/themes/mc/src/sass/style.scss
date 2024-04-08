@@ -1,0 +1,9 @@
+@use "pages/home"; // トップ画面スタイル（ページ毎に作成）
+@use "pages/works"; // ワークス画面スタイル（ページ毎に作成）
+@use "pages/article"; // 個別投稿画面スタイル（ページ毎に作成）
+@use "pages/contact"; // お問い合わせ画面スタイル（ページ毎に作成）
+
+@use "parts/mouse-stalker"; // マウスストーカー
+@use "parts/hero-slider"; // ヒーロースライダー
+@use 'parts/text-animation'; // テキストアニメーション
+@use 'parts/appear'; // appearアニメーション

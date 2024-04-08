@@ -1,0 +1,41 @@
+@use "../globals" as *;
+
+/*--------------------------------
+マウスストーカー
+---------------------------------*/
+.mouse-stalker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate3d(50vw, 50vh, 0); // js実行前のストーカーの初期位置
+  z-index: 9999;
+  pointer-events: none;
+  transition: all .3s ease-out; // ストーカーを追従する速度
+  mix-blend-mode: difference;
+
+  // サークル
+  &__circle {
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border-radius: 30px;
+    background: linear-gradient(
+      135deg,
+      $cMainPurple1,
+      $cMainPurple4
+    );
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  &.is-active &__circle {
+    opacity: 0.8;
+  }
+
+  &.is-hover &__circle {
+    transform: scale(0.2);
+    background: $cWhite;
+  }
+}
+
+

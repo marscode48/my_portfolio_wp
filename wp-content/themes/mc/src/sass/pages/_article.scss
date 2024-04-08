@@ -1,0 +1,220 @@
+@use "../globals" as *;
+@use "../parts/common" as *;
+
+/*--------------------------------
+下層：個別Worksページ
+---------------------------------*/
+.article-page {
+  overflow: hidden; // parallaxの背景グラデーションを収める
+
+  // ロード時に一瞬全体が表示されるチラツキを防ぐ
+  & .appear.up.inview {
+    .article-page__wrapper.item:nth-child(1) {
+      transition-delay: 0.8s;
+    }
+  }
+
+  &__wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  // パララックス
+  & .parallax {
+    position: relative;
+    height: 80svh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mq(lg) {
+      height: 100svh;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom right,
+        $cMainPurple1,
+        $cMainPurple2,
+        $cMainPurple3,
+        $cMainPurple4
+      );
+      filter: blur(50px) opacity(0.6);
+      transform: translateY(10px) scale(1.1);
+      
+      @include mq(lg) {
+        filter: blur(100px) opacity(0.6);
+      }
+    }
+
+    &__img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 80svh; // 高さを低くすると動き（パララックス）は早くなる
+      width: 100%;
+      border-radius: 8px;
+      background: url("../../images/article-01.jpg") no-repeat top / cover;
+
+      @include mq(lg) {
+        height: 100svh; // 高さを低くすると動き（パララックス）は早くなる
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        background: linear-gradient(
+          to bottom right,
+          $cMainPurple1,
+          $cMainPurple2,
+          $cMainPurple3,
+          $cMainPurple4
+        );
+        opacity: 0.2;
+        box-shadow: inset 0 0 50px 20px $cBlack;
+      }
+    }
+
+    &__title {
+      @include f_around(18, 700, 50, 18);
+      z-index: 1;
+
+      @include mq(md) {
+        @include f_around(24, false, 100, 24);
+      }
+
+      @include mq(lg) {
+        @include f_around(30, false, false, 30);
+      }
+    
+      & .char {
+        display: inline-block;
+        text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.25);
+        background: linear-gradient(
+        to bottom,
+        $cMainPurple1,
+        $cMainPurple2,
+        $cMainPurple3,
+        $cMainPurple4
+        );
+        color: $cMainPurple1; // 文字グラデーション非対応のブラウザ
+        background-clip: text;
+        -webkit-background-clip: text; // テキストを切り抜く
+        -webkit-text-fill-color: transparent; // 切り抜いた部分は背景を表示
+      }
+    }
+  }
+
+  // 文字スライド
+  & .slide {
+
+    &__item {
+      margin-top: 30px;
+  
+      @include mq(lg) {
+        margin-top: 50px;
+      }
+    }
+  
+    &__title {
+      position: relative;
+      @include f_around(18, 700, 150, 18);
+      padding-left: 0.8em;
+      overflow: hidden;
+      display: inline-block;
+  
+      @include mq(md) {
+        @include f_around(20, false, false, false);
+        padding-left: 1em;
+      }
+  
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        content: "";
+        border-radius: 3px;
+        background: linear-gradient(
+          to bottom,
+          $cMainPurple1,
+          $cMainPurple2,
+          $cMainPurple3,
+          $cMainPurple4
+        );
+      }
+  
+      & .rect {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        display: block;
+        background: linear-gradient(
+          to right,
+          $cMainPurple1,
+          $cMainPurple2,
+          $cMainPurple3,
+          $cMainPurple4
+        );
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+      }
+    }
+  
+    &__text {
+      @include f_around(13, false, false, 22.1);
+      margin-top: 5px;
+  
+      @include mq(md) {
+        @include f_around(15, false, false, 27);
+      }
+    }
+
+    &__link {
+      @include mq(lg) {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 5px;
+      }
+
+      @include mq(lg) {
+        &::after {
+          position: absolute;
+          content: "";
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 3px;
+          transform: translateX(-50%);
+          transition: all 0.3s;
+          background-color: $cWhite;  
+        }
+    
+        &:hover::after {
+          width: 100%;
+        }  
+      }
+
+      &:active {
+        transition: unset;
+        filter: brightness(0.85);
+      }
+    }
+  }
+}

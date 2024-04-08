@@ -1,0 +1,14 @@
+@use "../globals" as *;
+@use "../parts/common" as *;
+
+/*--------------------------------
+下層：Contactページ
+---------------------------------*/
+.contact-page {
+
+  & .appear.up.inview {
+    .contact-page__list.item:nth-child(1) {
+      transition-delay: 0.8s;
+    }
+  }
+}

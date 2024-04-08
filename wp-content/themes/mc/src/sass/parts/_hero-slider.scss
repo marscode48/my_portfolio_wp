@@ -1,0 +1,260 @@
+@use "../globals" as *;
+
+/*--------------------------------
+ワークスヒーロー
+---------------------------------*/
+.works {
+
+  // フェードモード時の共通調整
+  & .swiper-fade .swiper-slide {
+    transition-property: opacity, transform !important;
+    pointer-events: none;
+  }
+
+  & .swiper-fade .swiper-slide-active {
+    pointer-events: auto;
+  }
+  // フェードモード時の共通調整
+
+  & .slide {
+    display: grid;
+    place-content: center;
+    row-gap: 20px;
+    height: 40vh;
+    text-align: center;
+
+    @include mq(md) {
+      height: 50vh;
+    }
+
+    @include mq(lg) {
+      height: 500px;
+      padding: 0 8rem;
+      row-gap: 40px;
+    }
+
+    &__img-wrapper {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 4px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom right,
+          $cMainPurple1,
+          $cMainPurple2,
+          $cMainPurple3,
+          $cMainPurple4
+        );
+        opacity: 0.3;
+        box-shadow: inset 0 0 50px 20px $cBlack;
+        border-radius: 4px;
+      }
+    }
+  
+    &__img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      transition: transform 5s linear;
+      transform: translateX(-1.5%) scale(1.2);
+    }
+
+    &__title, &__text {
+      text-shadow: 0 0 10px $cBlack;
+    }
+    
+    &__title, &__text, &__link {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &__title {
+      @include f_around(24, 700, 75, 24);
+    
+      @include mq(lg) {
+        @include f_around(42, false, 100, false);
+      }
+    }
+
+    &__text {
+      @include f_around(12, false, 25, 15.6);
+
+      @include mq(lg) {
+        @include f_around(16, false, false, false);
+      }
+    }
+
+    &__button {
+      @include f_around(16, 700, 75, 16);
+      display: inline-block;
+      background: linear-gradient(
+        to right,
+        $cMainPurple1,
+        $cMainPurple2,
+        $cMainPurple3,
+        $cMainPurple4
+      );
+      color: $cMainPurple1; // 文字グラデーション非対応のブラウザ
+      background-clip: text;
+      -webkit-background-clip: text; // テキストを切り抜く
+      -webkit-text-fill-color: transparent; // 切り抜いた部分は背景を表示
+
+      @include mq(lg) {
+        @include f_around(20, false, false, false);
+
+        &:hover {
+          filter: brightness(1.15);
+        }
+      }
+
+      &:active {
+        filter: brightness(0.85);
+      }
+    
+      &::before {
+        display: inline-block;
+        width: 6rem;
+        height: 1px;
+        margin: -2px 1.6rem 0 0;
+        content: "";
+        vertical-align: middle;
+        background: linear-gradient(
+          to right,
+          $cMainPurple1,
+          $cMainPurple2,
+          $cMainPurple3,
+          $cMainPurple4
+        );
+      }
+    }  
+  }
+
+  & .swiper-slide[class*=-active] {
+
+    & .slide__img {
+      transition-delay: 0s;
+      transform: translateX(0%) scale(1);
+    }
+  }
+
+  // .anm-startedクラス付与
+  & .swiper-slide.anm-started .slide__title,
+  & .swiper-slide.anm-started .slide__text,
+  & .swiper-slide.anm-started .slide__link {
+    visibility: visible;
+    @include animation(
+      $name: works-hero-fadeIn,
+      $duration: 0.8s,
+      $timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940),
+      $delay: 0s,
+      $iteration-count: 1,
+      $direction: normal,
+      $fill-mode: both
+    );
+  }
+
+  & .swiper-slide.anm-started .slide__text {
+    animation-delay: 0.2s;
+  }
+
+  & .swiper-slide.anm-started .slide__link {
+    animation-delay: 0.4s;
+  }
+
+  & .swiper-slide.anm-finished .slide__title,
+  & .swiper-slide.anm-finished .slide__text,
+  & .swiper-slide.anm-finished .slide__link {
+    visibility: visible;
+    @include animation(
+      $name: works-hero-fadeOut,
+      $duration: 0.8s,
+      $timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940),
+      $delay: 0s,
+      $iteration-count: 1,
+      $direction: normal,
+      $fill-mode: both
+    );
+  }
+
+  & .swiper-slide.anm-finished .slide__text {
+    animation-delay: 0.2s;
+  }
+
+  & .swiper-slide.anm-finished .slide__link {
+    animation-delay: 0.4s;
+  }
+  // .anm-startedクラス付与
+
+  & .swiper-pagination {
+    position: absolute;
+    z-index: 2;
+    bottom: 5%;
+    left: 5%;
+    height: max-content;
+  
+    &-bullet {
+      display: block;
+      width: 1.6rem;
+      height: 2px;
+      cursor: pointer;
+      transition: all 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+      background-color: rgb(255 255 255 / 0.3);
+  
+      &:not(:first-child) {
+        margin-top: 0.8rem;
+      }
+      
+      &-active {
+        width: 2.8rem;
+        background-color: rgb(255 255 255);
+
+        @include mq() {
+          width: 5rem;
+        }
+      }
+    }
+  }
+}
+
+@keyframes works-hero-fadeIn {
+  0% {
+    letter-spacing: -0.5em;
+    transform: translateZ(-700px) translateY(500px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes works-hero-fadeOut {
+  0% {
+    transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    letter-spacing: -0.5em;
+    transform: translateZ(-500px) translateY(-300px);
+    opacity: 0;
+  }
+}
