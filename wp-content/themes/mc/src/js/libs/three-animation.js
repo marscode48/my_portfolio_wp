@@ -38,11 +38,11 @@ export class ThreeAnimation {
 
     // マテリアルを作成
     const earthMaterial = new THREE.MeshStandardMaterial({
-      map: new THREE.TextureLoader().load('../images/earthmap1k.jpg'),
+      map: new THREE.TextureLoader().load(path + '/images/earthmap1k.jpg'),
       side: THREE.DoubleSide,
     });
     const marsMaterial = new THREE.MeshStandardMaterial({
-      map: new THREE.TextureLoader().load('../images/marsmap1k.jpg'),
+      map: new THREE.TextureLoader().load(path + '/images/marsmap1k.jpg'),
       side: THREE.DoubleSide,
     });
     // 地球メッシュを作成
