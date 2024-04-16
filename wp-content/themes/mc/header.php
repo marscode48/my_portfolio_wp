@@ -22,20 +22,20 @@
     <script type="importmap">
       {
         "imports": {
-          "mouse-stalker": "./wp-content/themes/mc/js/libs/mouse-stalker.js",
+          "mouse-stalker": "../wp-content/themes/mc/js/libs/mouse-stalker.js",
           "three": "https://unpkg.com/three@0.142.0/build/three.module.js",
-          "menu-open": "./wp-content/themes/mc/js/libs/menu-open.js",
-          "main-visual": "./wp-content/themes/mc/js/libs/mv-animation.js",
-          "three-animation": "./wp-content/themes/mc/js/libs/three-animation.js",
-          "slider-swiper": "./wp-content/themes/mc/js/libs/slider-swiper.js",
-          "smooth-scroll": "./wp-content/themes/mc/js/libs/smooth-scroll.js",
-          "scroll-observer": "./wp-content/themes/mc/js/libs/scroll-observer.js",
-          "works-animation": "./wp-content/themes/mc/js/libs/works-animation.js",
-          "text-animation": "./wp-content/themes/mc/js/libs/text-animation.js",
-          "skill-animation": "./wp-content/themes/mc/js/libs/skill-animation.js",
-          "about-animation": "./wp-content/themes/mc/js/libs/about-animation.js",
-          "contact-canvas": "./wp-content/themes/mc/js/libs/contact-canvas.js",
-          "contact-animation": "./wp-content/themes/mc/js/libs/contact-animation.js"
+          "menu-open": "../wp-content/themes/mc/js/libs/menu-open.js",
+          "main-visual": "../wp-content/themes/mc/js/libs/mv-animation.js",
+          "three-animation": "../wp-content/themes/mc/js/libs/three-animation.js",
+          "slider-swiper": "../wp-content/themes/mc/js/libs/slider-swiper.js",
+          "smooth-scroll": "../wp-content/themes/mc/js/libs/smooth-scroll.js",
+          "scroll-observer": "../wp-content/themes/mc/js/libs/scroll-observer.js",
+          "works-animation": "../wp-content/themes/mc/js/libs/works-animation.js",
+          "text-animation": "../wp-content/themes/mc/js/libs/text-animation.js",
+          "skill-animation": "../wp-content/themes/mc/js/libs/skill-animation.js",
+          "about-animation": "../wp-content/themes/mc/js/libs/about-animation.js",
+          "contact-canvas": "../wp-content/themes/mc/js/libs/contact-canvas.js",
+          "contact-animation": "../wp-content/themes/mc/js/libs/contact-animation.js"
         }
       }
     </script>
