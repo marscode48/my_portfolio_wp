@@ -26,12 +26,19 @@ add_action('wp_enqueue_scripts', 'my_enqueue_styles');
 JSファイルの読み込み
 **************************************************/
 function my_enqueue_scripts() {
+  wp_deregister_script('jquery'); // デフォルトのjQueryは削除
+
   wp_enqueue_script('loader', get_theme_file_uri('js/vendors/pace.js'), array(), false, false);
 
   wp_enqueue_script('fontawesome', '//kit.fontawesome.com/52e705be32.js', array(), false, array(
-    'strategy' => 'defer',
-    'in_footer' => false
+    'strategy' => 'defer', // deferやasyncの情報
+    'in_footer' => false // フッターに書くか、falseならhead内
   ));
+
+  // wp_enqueue_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array(), '3.6.0', array(
+  //   'strategy' => 'defer',
+  //   'in_footer' => false
+  // ));
 
   wp_enqueue_script('gsap', get_theme_file_uri('js/vendors/gsap.min.js'), array(), '3.12.2', array(
     'strategy' => 'defer',
