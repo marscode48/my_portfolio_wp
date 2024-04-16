@@ -1,6 +1,15 @@
 <?php
 
 /**************************************************
+タイトルタグ、サムネイル画像を出力
+**************************************************/ 
+function setup_my_theme() {
+  add_theme_support('title-tag');
+  add_theme_support('post-thumbnails');
+}
+add_action('after_setup_theme', 'setup_my_theme');
+
+/**************************************************
 CSSファイルの読み込み
 **************************************************/
 function my_enqueue_styles() {
