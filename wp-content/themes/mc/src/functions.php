@@ -75,7 +75,22 @@ function my_enqueue_scripts() {
 
   wp_enqueue_script('three', get_theme_file_uri('js/libs/three-animation.js'), array(), false, false);
 
-  wp_enqueue_script('main', get_theme_file_uri('js/main.js'), array(), false, false);
+  // ページ毎に別のJSを読み込む
+  if(is_front_page()) {
+    wp_enqueue_script('main', get_theme_file_uri('js/main.js'), array(), false, false);
+  }
+
+  if(is_archive()) {
+    wp_enqueue_script('works', get_theme_file_uri('js/main-works.js'), array(), false, false);
+  }
+
+  if(is_single()) {
+    wp_enqueue_script('article', get_theme_file_uri('js/main-article.js'), array(), false, false);
+  }
+
+  if(is_page('contact')) {
+    wp_enqueue_script('article', get_theme_file_uri('js/main-contact.js'), array(), false, false);
+  }
 }
 
 add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
@@ -88,6 +103,15 @@ function add_module($tag, $handle) {
     $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
   }
   if ( 'main' === $handle ) {
+    $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
+  }
+  if ( 'works' === $handle ) {
+    $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
+  }
+  if ( 'article' === $handle ) {
+    $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
+  }
+  if ( 'contact' === $handle ) {
     $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
   }
   return $tag;
