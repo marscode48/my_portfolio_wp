@@ -1,3 +1,5 @@
+<?php get_header(); ?>
+
 <!-- content -->
 <main class="content">
   <canvas id="mainCanvas"></canvas>
@@ -157,3 +159,5 @@
   </div>
   <!-- /page-top -->
 </main>
+
+<?php get_footer(); ?>
