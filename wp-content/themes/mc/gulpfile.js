@@ -123,11 +123,15 @@ function extras() {
 
 function clean() {
   return del([
-    './css',
-    './images',
-    './js',
     './*.html',
-    './*.php'
+    './*.php',
+    './*.ico',
+    './*.png',
+    './css/**',
+    './js/**',
+    './images/**',
+    './video/**',
+    './audio/**',
   ]);
 }
 
