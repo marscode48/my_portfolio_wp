@@ -10,6 +10,57 @@ function setup_my_theme() {
 add_action('after_setup_theme', 'setup_my_theme');
 
 /**************************************************
+カスタム投稿タイプの追加
+**************************************************/
+function add_custom_post_type() {
+
+  // 「works」のカスタム投稿追加
+  register_post_type(
+    'works', //カスタム投稿名（英数字の小文字）
+    array(
+      'label' => 'ワークス', // 管理画面上の表示（日本語でもOK）
+      'public' => true, // 管理画面に表示するか
+      'has_archive' => true, // 投稿した記事の一覧ページを作成するか
+      'menu_position' => 5, // 管理画面メニューの表示位置（投稿の下に追加）
+      'show_in_rest' => true, // Gutenbergの有効化
+      'supports' => array(
+        'title',  // タイトル
+        'editor', // エディター
+        'thumbnail', // アイキャッチ画像
+        'revisions' // リビジョンの保存
+      ),
+    )
+  );
+
+  // 「works」のカスタム投稿にカテゴリーを追加
+  register_taxonomy(
+    'works-cat', // カテゴリーの名前（英数字の小文字）
+    'works',     // カテゴリーを追加したいカスタム投稿タイプ名
+    array(
+      'label' => 'カテゴリー', // 表示名称
+      'public' => true, // 管理画面に表示するかどうかの指定
+      'hierarchical' => true, // 階層を持たせるかどうか
+      'show_in_rest' => true, // REST APIの有効化。ブロックエディタの有効化。
+    )
+  );
+
+  // 「works」のカスタム投稿にタグを追加
+  register_taxonomy(
+    'works-tag', // タグの名前（英数字の小文字）
+    'works',     // タグを追加したいカスタム投稿タイプ
+    array(
+      'label' => 'タグ', // 表示名
+      'public' => true, // このタクソノミーを利用する場合かどうか
+      'hierarchical' => false, // 階層を持たせるかどうか
+      'show_in_rest' => true, // REST APIの有効化。ブロックエディタの有効化。
+      'update_count_callback' => '_update_post_term_count',
+    )
+  );
+}
+
+add_action( 'init', 'add_custom_post_type' );
+
+/**************************************************
 CSSファイルの読み込み
 **************************************************/
 function my_enqueue_styles() {
