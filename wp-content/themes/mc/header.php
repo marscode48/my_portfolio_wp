@@ -35,6 +35,8 @@
           "skill-animation": "../wp-content/themes/mc/js/libs/skill-animation.js",
           "about-animation": "../wp-content/themes/mc/js/libs/about-animation.js",
           "contact-canvas": "../wp-content/themes/mc/js/libs/contact-canvas.js",
+          "btn-animation": "../wp-content/themes/mc/js/libs/contact-canvas.js",
+          "article-animation": "../wp-content/themes/mc/js/libs/article-animation.js",
           "contact-animation": "../wp-content/themes/mc/js/libs/contact-animation.js"
         }
       }
