@@ -15,73 +15,32 @@
           <!-- swiper-main -->
           <div class="swiper swiper-main">
             <div class="swiper-wrapper">
+            <?php
+              $args = array(
+                'post_type' => 'works',
+                'posts_per_page' => -1,
+              );
+              $the_query = new WP_Query($args);
+            ?>
+            <?php if ($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
+
               <div class="swiper-slide">
                 <div class="slide">
-                  <div class="slide__img-wrapper"><img class="slide__img" src="images/works-image1.jpg" alt="worksスライド画像一覧"></div>
-                  <p class="slide__title">MarsDesign</p>
-                  <p class="slide__text">WordPress / Swiper</p>
+                <?php if(has_post_thumbnail()): ?>
+                  <div class="slide__img-wrapper"><img class="slide__img" src="<?php the_post_thumbnail_url('full'); ?>" alt="worksスライド画像一覧"></div>
+                  <p class="slide__title"><?php the_title(); ?></p>
+                  <p class="slide__text"><?php echo get_the_term_list($post->ID,'works-tag','',' / '); ?></p>
                   <div class="slide__link">
-                    <a href="article-01.html" class="btn">more
+                    <a href="<?php the_permalink(); ?>" class="btn">more
                       <i class="btn-icon fa-solid fa-arrow-right"></i>
                     </a>
                   </div>
+                <?php endif; ?>
                 </div>
               </div>
-              <div class="swiper-slide">
-                <div class="slide">
-                  <div class="slide__img-wrapper"><img class="slide__img" src="images/works-image2.jpg" alt="worksスライド画像一覧"></div>
-                  <p class="slide__title">MarsCafe</p>
-                  <p class="slide__text">アニメーションサイト / GSAP</p>
-                  <div class="slide__link">
-                    <a href="article-01.html" class="btn">more
-                      <i class="btn-icon fa-solid fa-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="slide">
-                  <div class="slide__img-wrapper"><img class="slide__img" src="images/works-image3.jpg" alt="worksスライド画像一覧"></div>
-                  <p class="slide__title">MarsCode</p>
-                  <p class="slide__text">3Dサイト / WebGL(Three.js)</p>
-                  <div class="slide__link">
-                    <a href="article-01.html" class="btn">more
-                      <i class="btn-icon fa-solid fa-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="slide">
-                  <div class="slide__img-wrapper"><img class="slide__img" src="images/works-image4.jpg" alt="worksスライド画像一覧"></div>
-                  <p class="slide__title">リベルテ</p>
-                  <p class="slide__text">ECサイト / Shopify</p>
-                  <div class="slide__link">
-                    <a href="article-01.html" class="btn">more
-                      <i class="btn-icon fa-solid fa-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="slide">
-                  <div class="slide__img-wrapper"><img class="slide__img" src="images/works-image5.jpg" alt="worksスライド画像一覧"></div>
-                  <p class="slide__title">Mars Vintage</p>
-                  <p class="slide__text">Webアプリケーション(Vue.js) / SPA</p>
-                  <div class="slide__link">
-                    <a href="article-01.html" class="btn">more
-                      <i class="btn-icon fa-solid fa-arrow-right"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="slide">
-                  <div class="slide__img-wrapper"><img class="slide__img" src="images/works-past.jpg" alt="worksスライド画像一覧"></div>
-                  <p class="slide__title">制作実績（非公開）</p>
-                  <p class="slide__text">ご面談時にご紹介できればと思います。</p>
-                </div>
-              </div>
+            <?php endwhile; ?>
+            <?php wp_reset_postdata(); ?>
+            <?php endif; ?>
             </div>
             <div class="swiper-controller">
               <div class="swiper-button-prev mouse-stalker-link"></div>
@@ -99,48 +58,26 @@
           <!-- swiper-thumb -->
           <div class="swiper swiper-thumb">
             <div class="swiper-wrapper">
+            <?php
+              $args = array(
+                'post_type' => 'works',
+                'posts_per_page' => -1,
+              );
+              $the_query = new WP_Query($args);
+            ?>
+            <?php if ($the_query->have_posts()): while ($the_query->have_posts()): $the_query->the_post(); ?>
               <div class="swiper-slide">
+              <?php if(has_post_thumbnail()): ?>
                 <div class="thumb mouse-stalker-link">
                   <div class="thumb__img-wrapper">
-                    <img class="thumb__img" src="images/works-image1.jpg" alt="worksサムネイル画像一覧">
+                    <img class="thumb__img" src="<?php the_post_thumbnail_url('full'); ?>" alt="worksサムネイル画像一覧">
                   </div>
                 </div>
+              <?php endif; ?>
               </div>
-              <div class="swiper-slide">
-                <div class="thumb mouse-stalker-link">
-                  <div class="thumb__img-wrapper">
-                    <img class="thumb__img" src="images/works-image2.jpg" alt="worksサムネイル画像一覧">
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="thumb mouse-stalker-link">
-                  <div class="thumb__img-wrapper">
-                    <img class="thumb__img" src="images/works-image3.jpg" alt="worksサムネイル画像一覧">
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="thumb mouse-stalker-link">
-                  <div class="thumb__img-wrapper">
-                    <img class="thumb__img" src="images/works-image4.jpg" alt="worksサムネイル画像一覧">
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="thumb mouse-stalker-link">
-                  <div class="thumb__img-wrapper">
-                    <img class="thumb__img" src="images/works-image5.jpg" alt="worksサムネイル画像一覧">
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="thumb mouse-stalker-link">
-                  <div class="thumb__img-wrapper">
-                    <img class="thumb__img" src="images/works-past.jpg" alt="worksサムネイル画像一覧">
-                  </div>
-                </div>
-              </div>
+            <?php endwhile; ?>
+            <?php wp_reset_postdata(); ?>
+            <?php endif; ?>
             </div>
             <div class="swiper-scrollbar mouse-stalker-link"></div>
           </div>
