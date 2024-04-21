@@ -22,22 +22,22 @@
     <script type="importmap">
       {
         "imports": {
-          "mouse-stalker": "../wp-content/themes/mc/js/libs/mouse-stalker.js",
+          "mouse-stalker": "http://mars-code.local/wp-content/themes/mc/js/libs/mouse-stalker.js",
           "three": "https://unpkg.com/three@0.142.0/build/three.module.js",
-          "menu-open": "../wp-content/themes/mc/js/libs/menu-open.js",
-          "main-visual": "../wp-content/themes/mc/js/libs/mv-animation.js",
-          "three-animation": "../wp-content/themes/mc/js/libs/three-animation.js",
-          "slider-swiper": "../wp-content/themes/mc/js/libs/slider-swiper.js",
-          "smooth-scroll": "../wp-content/themes/mc/js/libs/smooth-scroll.js",
-          "scroll-observer": "../wp-content/themes/mc/js/libs/scroll-observer.js",
-          "works-animation": "../wp-content/themes/mc/js/libs/works-animation.js",
-          "text-animation": "../wp-content/themes/mc/js/libs/text-animation.js",
-          "skill-animation": "../wp-content/themes/mc/js/libs/skill-animation.js",
-          "about-animation": "../wp-content/themes/mc/js/libs/about-animation.js",
-          "contact-canvas": "../wp-content/themes/mc/js/libs/contact-canvas.js",
-          "btn-animation": "../wp-content/themes/mc/js/libs/contact-canvas.js",
-          "article-animation": "../wp-content/themes/mc/js/libs/article-animation.js",
-          "contact-animation": "../wp-content/themes/mc/js/libs/contact-animation.js"
+          "menu-open": "http://mars-code.local/wp-content/themes/mc/js/libs/menu-open.js",
+          "main-visual": "http://mars-code.local/wp-content/themes/mc/js/libs/mv-animation.js",
+          "three-animation": "http://mars-code.local/wp-content/themes/mc/js/libs/three-animation.js",
+          "slider-swiper": "http://mars-code.local/wp-content/themes/mc/js/libs/slider-swiper.js",
+          "smooth-scroll": "http://mars-code.local/wp-content/themes/mc/js/libs/smooth-scroll.js",
+          "scroll-observer": "http://mars-code.local/wp-content/themes/mc/js/libs/scroll-observer.js",
+          "works-animation": "http://mars-code.local/wp-content/themes/mc/js/libs/works-animation.js",
+          "text-animation": "http://mars-code.local/wp-content/themes/mc/js/libs/text-animation.js",
+          "skill-animation": "http://mars-code.local/wp-content/themes/mc/js/libs/skill-animation.js",
+          "about-animation": "http://mars-code.local/wp-content/themes/mc/js/libs/about-animation.js",
+          "contact-canvas": "http://mars-code.local/wp-content/themes/mc/js/libs/contact-canvas.js",
+          "btn-animation": "http://mars-code.local/wp-content/themes/mc/js/libs/btn-animation.js",
+          "article-animation": "http://mars-code.local/wp-content/themes/mc/js/libs/article-animation.js",
+          "contact-animation": "http://mars-code.local/wp-content/themes/mc/js/libs/contact-animation.js"
         }
       }
     </script>
