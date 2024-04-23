@@ -1927,7 +1927,6 @@ Contact
   height: 80svh;
   width: 100%;
   border-radius: 8px;
-  background: url("../../images/article-01.jpg") no-repeat top/cover;
 }
 @media screen and (min-width: 960px) {
   .article-page .parallax__img {
