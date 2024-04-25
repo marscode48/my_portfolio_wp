@@ -16,10 +16,9 @@
           <div class="article-page__wrapper item">
             <!-- parallax -->
             <div class="parallax">
-              <div class="parallax__img"></div>
               <div class="parallax__img" style="background: url('<?php the_field('article_image'); ?>') no-repeat top / cover;"></div>
               <h3 class="parallax__title">
-                MarsDesign
+                <?php the_title(); ?>
               </h3>
             </div>
             <!-- /parallax -->
