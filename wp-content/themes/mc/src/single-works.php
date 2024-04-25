@@ -30,7 +30,9 @@
                   <span class="label">URL</span>
                 </h3>
                 <p class="slide__text slideX">
-                  <a class="slide__link" href="https://mars-design.site/" target="_blank" rel="noopener">https://mars-design.site/</a>
+                  <a class="slide__link" href="<?php the_field('article_url'); ?>" target="_blank" rel="noopener">
+                    <?php the_field('article_url'); ?>
+                  </a>
                 </p>
               </div>
               <div class="slide__item">
@@ -39,7 +41,7 @@
                   <span class="label">ROLE</span>
                 </h3>
                 <p class="slide__text slideX">
-                  Planning / Design / Cording
+                  <?php the_field('article_role'); ?>
                 </p>
               </div>
               <div class="slide__item">
@@ -48,7 +50,7 @@
                   <span class="label">SKILL</span>
                 </h3>
                 <p class="slide__text slideX">
-                  WordPress（オリジナルテーマ） / Swiper / GSAP / JavaScript（オブジェクト指向）
+                 <?php the_field('article_skill'); ?>
                 </p>
               </div>
               <div class="slide__item">
@@ -57,14 +59,22 @@
                   <span class="label">ABOUT</span>
                 </h3>
                 <p class="slide__text slideX">
-                  WordPressのオリジナルテーマを開発し、架空の企業サイトを制作しました。このサイトではカスタム投稿を活用してWorksページを構築し、お問い合わせフォームにはContact Form 7を採用し、独自のスタイルを組み込んで実装しました。また、WP Mail SMTPを利用してメールサーバーをセットアップし、ローカル環境から本番環境への移行まで行いました。デザインにおいては、企業の信頼性を強調することに重点を置き、ユーザーに安心感を提供するデザインを心がけました。クラス設計から作成したJavaScriptでは、GSAPによるパララックスアニメーションや、Swiperを使ったサムネイル付きスライドを作成し、サイトの機能性と魅力を高めました。
+                  <?php 
+                  $content = get_the_content();
+                  // HTMLタグの除去
+                  $content = strip_tags( $content );
+                  // ショートコードの除去
+                  $content = strip_shortcodes( $content );
+                  // テキストのみを出力
+                  echo $content 
+                  ?> 
                 </p>
               </div>  
             </div>
           </div>
         </div>
         <div class="article-page__link link">
-          <a href="works.html" class="article-page__btn btn">back
+          <a href="<?php echo home_url(); ?>/works" class="article-page__btn btn">back
             <i class="btn-icon fa-solid fa-arrow-right"></i>
           </a>
         </div>
