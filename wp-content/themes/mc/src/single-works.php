@@ -2,6 +2,8 @@
 
   <!-- content -->
   <main class="content">
+  <?php if( have_posts() ): while( have_posts() ): the_post(); ?>
+
     <canvas id="mainCanvas"></canvas>
 
     <!-- article -->
@@ -77,6 +79,8 @@
       </a>
     </div>
     <!-- /page-top -->
+
+  <?php endwhile; endif; ?>
   </main>
 
 <?php get_footer() ?>
