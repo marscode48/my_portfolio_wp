@@ -188,6 +188,12 @@ add_filter('script_loader_tag', 'add_module', 10, 2);
 add_filter( 'big_image_size_threshold', '__return_false' );
 
 /**************************************************
+WordPressの自動整形機能を無効化する
+**************************************************/
+remove_filter('the_content', 'wpautop');
+remove_filter('the_excerpt', 'wpautop'); 
+
+/**************************************************
 WPデフォルト投稿のアーカイブページを作成
 **************************************************/
 // function post_has_archive($args, $post_type) {
