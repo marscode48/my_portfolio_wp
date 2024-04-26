@@ -58,7 +58,21 @@ function add_custom_post_type() {
   );
 }
 
-add_action( 'init', 'add_custom_post_type' );
+add_action('init', 'add_custom_post_type');
+
+/**************************************************
+リダイレクト処理
+**************************************************/
+function custom_redirects() {
+
+  // past-workはトップページに301リダイレクト
+	if (is_single('past-work')) {
+		wp_safe_redirect(home_url( '/' ), 301);
+		exit();
+	}
+}
+
+add_action('template_redirect', 'custom_redirects');
 
 /**************************************************
 CSSファイルの読み込み
