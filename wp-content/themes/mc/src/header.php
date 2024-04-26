@@ -71,10 +71,13 @@
             <nav class="gnav">
               <div class="gnav__canvas"></div>
               <ul class="gnav__list">
-                <li class="gnav__item"><a class="gnav__link" href="<?php echo esc_url(home_url('/works/')); ?>">WORKS</a></li>
-                <li class="gnav__item"><a class="gnav__link" href="<?php echo esc_url(home_url('/skill/')); ?>">SKILL</a></li>
-                <li class="gnav__item"><a class="gnav__link" href="<?php echo esc_url(home_url('/about/')); ?>">ABOUT</a></li>
-                <li class="gnav__item"><a class="gnav__link" href="<?php echo esc_url(home_url('/contact/')); ?>">CONTACT</a></li>
+                <?php 
+                if(is_home() || is_front_page()):
+                  get_template_part('gnav', 'home');
+                else:
+                  get_template_part('gnav', 'page');
+                endif
+                ?>
               </ul>
             </nav>
             <div class="gnav__circle-bg"></div>
