@@ -64,11 +64,15 @@ add_action('init', 'add_custom_post_type');
 リダイレクト処理
 **************************************************/
 function custom_redirects() {
-
+  // ページが見つからない場合はトップページに301リダイレクト
+	if (is_404()) {
+		wp_safe_redirect(home_url( '/' ), 301);
+		exit;
+	}
   // past-workはトップページに301リダイレクト
 	if (is_single('past-work')) {
 		wp_safe_redirect(home_url( '/' ), 301);
-		exit();
+		exit;
 	}
 }
 
