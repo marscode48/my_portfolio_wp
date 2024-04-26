@@ -31,9 +31,14 @@
                   <p class="slide__title"><?php the_title(); ?></p>
                   <p class="slide__text"><?php echo get_the_term_list($post->ID,'works-tag','',' / '); ?></p>
                   <div class="slide__link">
-                    <a href="<?php the_permalink(); ?>" class="btn">more
-                      <i class="btn-icon fa-solid fa-arrow-right"></i>
-                    </a>
+                    <?php
+                    /* past-workはリンクボタンを非表示 */
+                    if(!($post->post_name === 'past-work')):
+                      echo '<a href="';
+                      the_permalink();
+                      echo'" class="btn">more<i class="btn-icon fa-solid fa-arrow-right"></i></a>';
+                    endif;
+                    ?>
                   </div>
                 <?php endif; ?>
                 </div>
