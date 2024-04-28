@@ -29,8 +29,20 @@
                 <?php if(has_post_thumbnail()): ?>
                   <div class="slide__img-wrapper"><img class="slide__img" src="<?php the_post_thumbnail_url('full'); ?>" alt="worksスライド画像一覧"></div>
                   <p class="slide__title"><?php the_title(); ?></p>
-                  <p class="slide__text"><?php echo get_the_term_list($post->ID,'works-tag','',' / '); ?></p>
-                  <div class="slide__link">
+                  <p class="slide__text">
+                    <?php
+                    /* リンクなしのタグを挿入 */
+                      $terms = get_the_terms($post->ID, 'works-tag');
+                      if(!empty($terms)):
+                        $separator = ' / '; /* 区切り文字 */
+                        $string = '';
+                        foreach($terms as $term):
+                          $string .= esc_html($term->name) . $separator;
+                        endforeach;
+                        echo rtrim($string, $separator); /* 最後の区切り文字を削除 */
+                      endif;
+                    ?>
+                    <div class="slide__link">
                     <?php
                     /* past-workはリンクボタンを非表示 */
                     if(!($post->post_name === 'past-work')):
