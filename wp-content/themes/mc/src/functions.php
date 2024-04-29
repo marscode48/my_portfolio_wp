@@ -201,6 +201,33 @@ function add_module($tag, $handle) {
 add_filter('script_loader_tag', 'add_module', 10, 2);
 
 /**************************************************
+ページごとに出力するタイトルタグの内容を変更
+**************************************************/ 
+function rewrite_title($title) {
+  // ディスクリプションの表記を削除
+  $title['tagline'] = '';
+  // トップページ以外のサイトタイトルを変更
+  if(!(is_front_page() || is_home())) {
+    $title['site'] = 'MARS-CODE';
+  }
+  // カスタム投稿のサイトタイトルを変更
+  if(is_singular('works')) {
+    $title['title'] = '【ARTICLE】'.$title['title'];
+  }
+	return $title;
+}
+add_filter('document_title_parts', 'rewrite_title');
+
+/**************************************************
+区切り文字の書き換え
+**************************************************/ 
+function rewrite_separator($separator) {
+  $separator = '｜';
+  return $separator;
+}
+add_filter('document_title_separator', 'rewrite_separator');
+
+/**************************************************
 2560pxを超える画像をアップロードしても縮小させない
 **************************************************/
 add_filter( 'big_image_size_threshold', '__return_false' );
