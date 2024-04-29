@@ -18,7 +18,7 @@ function add_custom_post_type() {
   register_post_type(
     'works', //カスタム投稿名（英数字の小文字）
     array(
-      'label' => 'ワークス', // 管理画面上の表示（日本語でもOK）
+      'label' => 'WORKS', // 管理画面上の表示（タイトルタグにこのラベルが出力）
       'public' => true, // 管理画面に表示するか
       'has_archive' => true, // 投稿した記事の一覧ページを作成するか
       'menu_position' => 5, // 管理画面メニューの表示位置（投稿の下に追加）
@@ -37,7 +37,7 @@ function add_custom_post_type() {
     'works-cat', // カテゴリーの名前（英数字の小文字）
     'works',     // カテゴリーを追加したいカスタム投稿タイプ名
     array(
-      'label' => 'カテゴリー', // 表示名称
+      'label' => 'CATEGORY', // 表示名称（タイトルタグにこのラベルが出力）
       'public' => true, // 管理画面に表示するかどうかの指定
       'hierarchical' => true, // 階層を持たせるかどうか
       'show_in_rest' => true, // REST APIの有効化。ブロックエディタの有効化。
@@ -49,7 +49,7 @@ function add_custom_post_type() {
     'works-tag', // タグの名前（英数字の小文字）
     'works',     // タグを追加したいカスタム投稿タイプ
     array(
-      'label' => 'タグ', // 表示名
+      'label' => 'TAG', // 表示名称（タイトルタグにこのラベルが出力）
       'public' => true, // このタクソノミーを利用する場合かどうか
       'hierarchical' => false, // 階層を持たせるかどうか
       'show_in_rest' => true, // REST APIの有効化。ブロックエディタの有効化。
