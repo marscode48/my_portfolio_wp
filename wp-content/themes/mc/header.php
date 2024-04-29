@@ -9,7 +9,6 @@
     <meta property='og:description' content='<?php bloginfo('description'); ?>'>
     <meta property="og:image" content="<?php echo esc_url(get_theme_file_uri('/images/ogp.png')); ?>">
     <meta name="description" content="<?php bloginfo('description'); ?>" />
-    <title><?php echo bloginfo('name'); ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="<?php echo esc_url(get_theme_file_uri('/favicon.ico')); ?>" />
