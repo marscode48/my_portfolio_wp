@@ -53,7 +53,7 @@
                   <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image1.jpg')); ?>" alt="worksスライド画像一覧"></div>
                   <h2 class="slide__title">WordPress</h2>
                   <p class="slide__text">オリジナルテーマや<br class="sp-only">カスタム機能の作成</p>
-                  <p class="slide__link"><a href="works.html" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
               <div class="swiper-slide">
@@ -61,7 +61,7 @@
                   <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image2.jpg')); ?>" alt="worksスライド画像一覧"></div>
                   <h2 class="slide__title">Animation</h2>
                   <p class="slide__text">爽快で高性能な<br class="sp-only">アニメーションWebサイト</p>
-                  <p class="slide__link"><a href="works.html" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
               <div class="swiper-slide">
@@ -69,7 +69,7 @@
                   <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image3.jpg')); ?>" alt="worksスライド画像一覧"></div>
                   <h2 class="slide__title">3D Graphics</h2>
                   <p class="slide__text">3D表現を取り入れた<br class="sp-only">立体感や没入感のあるWebサイト</p>
-                  <p class="slide__link"><a href="works.html" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
               <div class="swiper-slide">
@@ -77,7 +77,7 @@
                   <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image4.jpg')); ?>" alt="worksスライド画像一覧"></div>
                   <h2 class="slide__title">Shopify</h2>
                   <p class="slide__text">理想とするデザインの<br class="sp-only">オンラインストア</p>
-                  <p class="slide__link"><a href="works.html" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
               <div class="swiper-slide">
@@ -85,7 +85,7 @@
                   <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image5.jpg')); ?>" alt="worksスライド画像一覧"></div>
                   <h2 class="slide__title">Web Application </h2>
                   <p class="slide__text">魅力的なUIの<br class="sp-only">Webアプリケーション開発</p>
-                  <p class="slide__link"><a href="works.html" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@
             </div>
           </div>
           <div class="works__link">
-            <a href="works.html" class="works__btn btn">more
+            <a href="<?php echo home_url(); ?>/works" class="works__btn btn">more
               <i class="btn-icon fa-solid fa-arrow-right"></i>
             </a>
           </div>
@@ -338,7 +338,7 @@
             <p class="contact__right">お問い合わせはこちら</p>
           </div>
           <div class="contact__link">
-            <a href="contact.html" class="contact__btn btn">more
+            <a href="<?php echo home_url(); ?>/contact" class="contact__btn btn">more
               <i class="btn-icon fa-solid fa-arrow-right"></i>
             </a>
           </div>
