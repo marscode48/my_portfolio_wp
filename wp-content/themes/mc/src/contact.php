@@ -17,7 +17,10 @@
         <h2 class="heading-primary tween-animate-title">CONTACT</h2>
       </div>
       <div class="section__body appear up">
-
+        <div class="contact-page__wrapper item">
+          <!-- Contact Form -->
+          <?php echo do_shortcode('[contact-form-7 id="fffbe94" title="CONTACT"]'); ?>
+        </div>
       </div>
     </div>
   </section>
