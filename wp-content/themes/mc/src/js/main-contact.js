@@ -28,7 +28,7 @@ class Main {
     new ScrollObserver('.nav-trigger', this.#navAnimation.bind(this), { once: false });
     new ScrollObserver('.appear', this.#inviewAnimation);
     new ScrollObserver('.tween-animate-title', this.#textAnimation, { rootMargin: '-50px 0px' });
-    new ScrollObserver('.article-page .link', this.#btnAnimation);
+    new ScrollObserver('.contact-page .link', this.#btnAnimation);
   }
 
   #mouseAnimation(el, inview) {
