@@ -236,7 +236,15 @@ add_filter( 'big_image_size_threshold', '__return_false' );
 WordPressの自動整形機能を無効化する
 **************************************************/
 remove_filter('the_content', 'wpautop');
-remove_filter('the_excerpt', 'wpautop'); 
+remove_filter('the_excerpt', 'wpautop');
+
+/**************************************************
+Contact Form 7の自動pタグとbrタグを無効化する
+**************************************************/
+add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
+function wpcf7_autop_return_false() {
+  return false;
+}
 
 /**************************************************
 WPデフォルト投稿のアーカイブページを作成
