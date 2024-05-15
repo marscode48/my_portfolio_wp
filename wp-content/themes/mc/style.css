@@ -2061,10 +2061,173 @@ Contact
 /*--------------------------------
 下層：Contactページ
 ---------------------------------*/
-.contact-page .appear.up.inview .contact-page__list.item:nth-child(1) {
+.contact-page .appear.up.inview .contact-page__wrapper.item:nth-child(1) {
   transition-delay: 0.8s;
+  animation-name: form-shadow;
+  animation-duration: 1.8s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-delay: 0.8s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+.contact-page__wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8%;
+  color: #fff;
+  border-radius: 20px;
+  background-color: rgba(125, 125, 125, 0.3);
+}
+@media screen and (min-width: 960px) {
+  .contact-page__wrapper {
+    padding: 50px;
+  }
 }
 
+.wpcf7 .screen-reader-response {
+  display: none;
+}
+.wpcf7 form .wpcf7-response-output {
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 8px 1em;
+  margin: 30px 0 0 0;
+  text-align: center;
+}
+.wpcf7 form.sent .wpcf7-response-output {
+  border-color: #fff;
+}
+.wpcf7 form.failed .wpcf7-response-output, .wpcf7 form.aborted .wpcf7-response-output, .wpcf7 form.spam .wpcf7-response-output, .wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.unaccepted .wpcf7-response-output, .wpcf7 form.payment-required .wpcf7-response-output {
+  border-color: #f00;
+  color: #f00;
+  font-weight: 700;
+}
+.wpcf7 form.failed .wpcf7-response-output::before, .wpcf7 form.aborted .wpcf7-response-output::before, .wpcf7 form.spam .wpcf7-response-output::before, .wpcf7 form.invalid .wpcf7-response-output::before, .wpcf7 form.unaccepted .wpcf7-response-output::before, .wpcf7 form.payment-required .wpcf7-response-output::before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f071";
+  font-weight: 900;
+  display: inline-block;
+  margin-right: 0.5em;
+}
+.wpcf7 form .wpcf7-not-valid-tip {
+  color: #f00;
+  border: 1px solid #f00;
+  font-weight: 700;
+  padding: 8px 1em;
+  margin: 10px 0 0 0;
+}
+.wpcf7 form .wpcf7-not-valid-tip::before {
+  font-family: "Font Awesome 6 Free";
+  content: "\f071";
+  font-weight: 900;
+  display: inline-block;
+  margin-right: 0.5em;
+}
+.wpcf7 form .use-floating-validation-tip .wpcf7-not-valid-tip {
+  display: none;
+}
+.wpcf7 form .wpcf7-spinner {
+  display: none;
+}
+
+.wpcf7-form__item + .wpcf7-form__item {
+  margin-top: 30px;
+}
+.wpcf7-form__title {
+  display: block;
+  font-weight: 700;
+}
+.wpcf7-form__radio, .wpcf7-form__input, .wpcf7-form__textarea {
+  margin-top: 10px;
+}
+.wpcf7-form__note {
+  font-size: 1rem;
+  margin-left: 5px;
+}
+.wpcf7-form__require {
+  font-size: 1rem;
+  color: #f00;
+  margin-left: 10px;
+}
+.wpcf7-form__radio {
+  display: block;
+}
+.wpcf7-form__radio .wpcf7-list-item {
+  margin: 0;
+  display: block;
+}
+@media screen and (min-width: 960px) {
+  .wpcf7-form__radio .wpcf7-list-item {
+    display: inline-block;
+  }
+}
+.wpcf7-form__radio .wpcf7-list-item + .wpcf7-list-item {
+  margin-top: 5px;
+}
+@media screen and (min-width: 960px) {
+  .wpcf7-form__radio .wpcf7-list-item + .wpcf7-list-item {
+    margin-top: 0px;
+    margin-left: 35px;
+  }
+}
+.wpcf7-form__radio .wpcf7-list-item-label {
+  margin-left: 5px;
+}
+.wpcf7-form__radio .wpcf7-list-item-label::before, .wpcf7-form__radio .wpcf7-list-item-label::after {
+  display: none;
+}
+.wpcf7-form__input {
+  width: 100%;
+  color: #000;
+  padding: 8px;
+  border: solid 1px #7d7d7d;
+  border-radius: 5px;
+  background-color: #fff;
+}
+@media screen and (min-width: 960px) {
+  .wpcf7-form__input {
+    width: 300px;
+  }
+}
+.wpcf7-form input[type=tel] {
+  width: 100%;
+}
+@media screen and (min-width: 960px) {
+  .wpcf7-form input[type=tel] {
+    width: 200px;
+  }
+}
+.wpcf7-form__textarea {
+  width: 100%;
+  min-height: 200px;
+  color: #000;
+  padding: 8px;
+  border: 1px solid #7d7d7d;
+  border-radius: 5px;
+  background-color: #fff;
+  resize: vertical;
+}
+@media screen and (min-width: 960px) {
+  .wpcf7-form__textarea {
+    min-width: 500px;
+  }
+}
+.wpcf7-form__link {
+  margin-top: 50px;
+}
+.wpcf7-form__btn {
+  border: 0;
+}
+
+@keyframes form-shadow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), inset 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0px 0px 5px 5px #cf00ff, inset 0 0 18px 3px rgba(0, 0, 0, 0.7);
+  }
+}
 /*--------------------------------
 マウスストーカー
 ---------------------------------*/
