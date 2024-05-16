@@ -2151,7 +2151,7 @@ Contact
   margin-left: 10px;
 }
 .wpcf7-form__radio {
-  display: block;
+  display: inline-block;
 }
 .wpcf7-form__radio .wpcf7-list-item {
   margin: 0;
