@@ -247,6 +247,22 @@ function wpcf7_autop_return_false() {
 }
 
 /**************************************************
+Contact Form 7 サンクスページへ偏移する
+**************************************************/
+function redirect_to_thanks_page() {
+  $homeUrl = home_url();
+  echo <<< EOD
+    <script>
+      document.addEventListener( 'wpcf7mailsent', function( event ) {
+        location = '{$homeUrl}/contact-thanks/';
+      }, false );
+    </script>
+  EOD;
+}
+
+add_action('wp_footer', 'redirect_to_thanks_page');
+
+/**************************************************
 WPデフォルト投稿のアーカイブページを作成
 **************************************************/
 // function post_has_archive($args, $post_type) {
