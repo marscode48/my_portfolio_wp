@@ -2,7 +2,7 @@
 @use "../parts/common" as *;
 
 /*--------------------------------
-下層：Contactページ
+下層：Contact、Contact-Thanksページ
 ---------------------------------*/
 .contact-page {
 
@@ -31,8 +31,16 @@
     background-color: $cBgGray;
 
     @include mq(lg) {
-      padding: 50px;
+      padding: 5% 50px;
     }
+  }
+
+  &__thanks-text {
+    text-align: center;
+  }
+
+  &__thanks-text + &__thanks-text {
+    margin-top: 10px;
   }
 }
 

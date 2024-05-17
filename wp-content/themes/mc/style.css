@@ -2059,7 +2059,7 @@ Contact
 }
 
 /*--------------------------------
-下層：Contactページ
+下層：Contact、Contact-Thanksページ
 ---------------------------------*/
 .contact-page .appear.up.inview .contact-page__wrapper.item:nth-child(1) {
   transition-delay: 0.8s;
@@ -2081,8 +2081,14 @@ Contact
 }
 @media screen and (min-width: 960px) {
   .contact-page__wrapper {
-    padding: 50px;
+    padding: 5% 50px;
   }
+}
+.contact-page__thanks-text {
+  text-align: center;
+}
+.contact-page__thanks-text + .contact-page__thanks-text {
+  margin-top: 10px;
 }
 
 .wpcf7 .screen-reader-response {
