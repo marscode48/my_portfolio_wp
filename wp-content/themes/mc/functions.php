@@ -216,6 +216,7 @@ function rewrite_title($title) {
   }
 	return $title;
 }
+
 add_filter('document_title_parts', 'rewrite_title');
 
 /**************************************************
@@ -225,6 +226,7 @@ function rewrite_separator($separator) {
   $separator = '｜';
   return $separator;
 }
+
 add_filter('document_title_separator', 'rewrite_separator');
 
 /**************************************************
@@ -241,10 +243,11 @@ remove_filter('the_excerpt', 'wpautop');
 /**************************************************
 Contact Form 7の自動pタグとbrタグを無効化する
 **************************************************/
-add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
 function wpcf7_autop_return_false() {
   return false;
 }
+
+add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
 
 /**************************************************
 Contact Form 7 サンクスページへ偏移する
