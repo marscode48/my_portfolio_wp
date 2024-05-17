@@ -169,7 +169,7 @@ function my_enqueue_scripts() {
     wp_enqueue_script('article', get_theme_file_uri('js/main-article.js'), array(), false, false);
   }
 
-  if(is_page('contact')) {
+  if(is_page('contact') || is_page('contact-thanks')) {
     wp_enqueue_script('article', get_theme_file_uri('js/main-contact.js'), array(), false, false);
   }
 }
