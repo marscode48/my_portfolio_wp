@@ -113,5 +113,6 @@
   </div>
   <!-- /page-top -->
 </main>
+<!-- content -->
 
 <?php get_footer(); ?>
