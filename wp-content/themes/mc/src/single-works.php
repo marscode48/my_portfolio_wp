@@ -34,6 +34,28 @@
                 </a>
               </p>
             </div>
+            <?php if(get_field('article_username')): ?>
+            <div class="slide__item">
+              <h3 class="slide__title">
+                <span class="rect"></span>
+                <span class="label">USER NAME</span>
+              </h3>
+              <p class="slide__text slideX">
+                <?php the_field('article_username'); ?>
+              </p>
+            </div>
+            <?php endif; ?>
+            <?php if(get_field('article_password')): ?>
+            <div class="slide__item">
+              <h3 class="slide__title">
+                <span class="rect"></span>
+                <span class="label">PASSWORD</span>
+              </h3>
+              <p class="slide__text slideX">
+                <?php the_field('article_password'); ?>
+              </p>
+            </div>
+            <?php endif; ?>
             <div class="slide__item">
               <h3 class="slide__title">
                 <span class="rect"></span>
