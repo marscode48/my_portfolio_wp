@@ -24,13 +24,13 @@
     text-align: center;
 
     @include mq(md) {
+      row-gap: 40px;
       height: 50vh;
     }
 
     @include mq(lg) {
       height: 500px;
       padding: 0 8rem;
-      row-gap: 40px;
     }
 
     &__img-wrapper {
