@@ -82,10 +82,14 @@
     }
 
     &__title {
-      @include f_around(24, 700, 75, 24);
+      @include f_around(32, 700, 75, 32);
     
+      @include mq(md) {
+        @include f_around(38, false, 100, false);
+      }
+
       @include mq(lg) {
-        @include f_around(42, false, 100, false);
+        @include f_around(42, false, false, false);
       }
     }
 
