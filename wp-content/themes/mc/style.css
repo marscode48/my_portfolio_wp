@@ -644,7 +644,7 @@ Works
   height: 100%;
   background: linear-gradient(to bottom right, #6253e1, #852d91, #a3a1ff, #f24645);
   filter: blur(50px) opacity(0.6);
-  transform: translateY(10px) scale(1.1);
+  transform: translateY(10px);
 }
 @media screen and (min-width: 960px) {
   .works__img-wrapper {
