@@ -88,20 +88,21 @@
     }
 
     &__title {
-      @include f_around(18, 700, 50, 18);
+      @include f_around(30, 700, 100, false);
+      text-align: center;
       z-index: 1;
 
       @include mq(md) {
-        @include f_around(24, false, 100, 24);
+        @include f_around(52, false, 125, false);
       }
 
       @include mq(lg) {
-        @include f_around(30, false, false, 30);
+        @include f_around(56, false, 150, false);
       }
     
       & .char {
         display: inline-block;
-        text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.25);
+        text-shadow: $article-parallax-shadow;
         background: linear-gradient(
         to bottom,
         $cMainPurple1,
