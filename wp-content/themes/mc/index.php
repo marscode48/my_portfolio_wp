@@ -48,44 +48,92 @@
           <!-- swiper -->
           <div class="works-hero swiper">
             <div class="swiper-wrapper">
+              <?php
+                // WORKSのカスタム投稿ID
+                $post_id_wordpress = 26; // MarsVintage
+                $post_id_animation = 37; // MarsCafe
+                $post_id_3d_graphics = 40; // MarsCode
+                $post_id_shopify = 43; // MarsLiberte
+                $post_id_web_application = 46; // MarsVintage
+              ?>
               <div class="swiper-slide">
                 <div class="slide">
-                  <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image1.jpg')); ?>" alt="worksスライド画像一覧"></div>
+                  <div class="slide__media slide__img-wrapper">
+                    <?php 
+                      $thumbnail_url = get_the_post_thumbnail_url($post_id_wordpress, 'full');
+
+                      if(!empty($thumbnail_url)) {
+                        echo '<img class="slide__img" src="' . esc_url($thumbnail_url) . '" alt="worksスライド画像一覧">';
+                      }
+                    ?>
+                  </div>
                   <h2 class="slide__title">WordPress</h2>
                   <p class="slide__text">オリジナルテーマや<br class="sp-only">カスタム機能の作成</p>
-                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php the_permalink($post_id_wordpress); ?>" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="slide">
-                  <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image2.jpg')); ?>" alt="worksスライド画像一覧"></div>
+                  <div class="slide__media slide__img-wrapper">
+                    <?php 
+                      $thumbnail_url = get_the_post_thumbnail_url($post_id_animation, 'full');
+
+                      if(!empty($thumbnail_url)) {
+                        echo '<img class="slide__img" src="' . esc_url($thumbnail_url) . '" alt="worksスライド画像一覧">';
+                      }
+                    ?>
+                  </div>
                   <h2 class="slide__title">Animation</h2>
                   <p class="slide__text">爽快で高性能な<br class="sp-only">アニメーションWebサイト</p>
-                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php the_permalink($post_id_animation); ?>" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="slide">
-                  <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image3.jpg')); ?>" alt="worksスライド画像一覧"></div>
+                  <div class="slide__media slide__img-wrapper">
+                    <?php 
+                      $thumbnail_url = get_the_post_thumbnail_url($post_id_3d_graphics, 'full');
+
+                      if(!empty($thumbnail_url)) {
+                        echo '<img class="slide__img" src="' . esc_url($thumbnail_url) . '" alt="worksスライド画像一覧">';
+                      }
+                    ?>
+                  </div>
                   <h2 class="slide__title">3D Graphics</h2>
                   <p class="slide__text">3D表現を取り入れた<br class="sp-only">立体感や没入感のあるWebサイト</p>
-                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php the_permalink($post_id_3d_graphics); ?>" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="slide">
-                  <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image4.jpg')); ?>" alt="worksスライド画像一覧"></div>
+                  <div class="slide__media slide__img-wrapper">
+                    <?php 
+                      $thumbnail_url = get_the_post_thumbnail_url($post_id_shopify, 'full');
+
+                      if(!empty($thumbnail_url)) {
+                        echo '<img class="slide__img" src="' . esc_url($thumbnail_url) . '" alt="worksスライド画像一覧">';
+                      }
+                    ?>
+                  </div>
                   <h2 class="slide__title">Shopify</h2>
                   <p class="slide__text">理想とするデザインの<br class="sp-only">オンラインストア</p>
-                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php the_permalink($post_id_shopify); ?>" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
               <div class="swiper-slide">
                 <div class="slide">
-                  <div class="slide__media slide__img-wrapper"><img class="slide__img" src="<?php echo esc_url(get_theme_file_uri('images/works-image5.jpg')); ?>" alt="worksスライド画像一覧"></div>
-                  <h2 class="slide__title">Web Application </h2>
+                  <div class="slide__media slide__img-wrapper">
+                    <?php 
+                      $thumbnail_url = get_the_post_thumbnail_url($post_id_web_application, 'full');
+
+                      if(!empty($thumbnail_url)) {
+                        echo '<img class="slide__img" src="' . esc_url($thumbnail_url) . '" alt="worksスライド画像一覧">';
+                      }
+                    ?>
+                  </div>
+                  <h2 class="slide__title">Web Application</h2>
                   <p class="slide__text">魅力的なUIの<br class="sp-only">Webアプリケーション開発</p>
-                  <p class="slide__link"><a href="<?php echo home_url(); ?>/works" class="slide__button">VIEW MORE</a></p>
+                  <p class="slide__link"><a href="<?php the_permalink($post_id_web_application); ?>" class="slide__button">VIEW MORE</a></p>
                 </div>
               </div>
             </div>
