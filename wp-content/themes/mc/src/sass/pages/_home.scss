@@ -941,21 +941,24 @@ About
     }
 
     &-content-title {
-      @include f_around(20, false, 125, 30);
+      font-size: clamp(20px, 6vw, 26px); // 最小値,中間値,最大値
+      letter-spacing: 0.125em;
+      line-height: 1.25;
       display: inline-block;
       position: relative;
       text-shadow: -1px -1px $cShadowPurple, -1px 1px $cShadowPurple, 1px -1px $cShadowPurple, 1px 1px $cShadowPurple;
 
       @include mq(md) {
-        @include f_around(24, false, false, false);
+        font-size: clamp(28px, 3.8vw, 34px); // 最小値,中間値,最大値
       }
 
       @include mq(lg) {
-        font-size: clamp(24px, 2vw, 30px); // 最小値,中間値,最大値
+        font-size: clamp(28px, 3vw, 34px); // 最小値,中間値,最大値
+        letter-spacing: 0.15em;
       }
 
       @include mq(xl) {
-        font-size: clamp(28px, 2.3vw, 34px); // 最小値,中間値,最大値
+        font-size: clamp(32px, 2.6vw, 38px); // 最小値,中間値,最大値
       }
 
       &::after {
@@ -982,7 +985,7 @@ About
     }
 
     &-content-text {
-      margin-top: min(3vh, 30px);
+      margin-top: min(3.5vh, 30px);
       @include f_around(12, false, false, 16.8);
 
       @include mq(md) {
