@@ -915,14 +915,13 @@ About
 .about__inner {
   display: grid;
   margin: 0 auto;
-  gap: 3vh 0;
+  gap: clamp(2rem, 5.5vh, 7rem) 0;
   grid-template-rows: minmax(150px, 1fr) 2fr;
   opacity: 0;
   transition: opacity 2s;
 }
 @media screen and (min-width: 600px) {
   .about__inner {
-    gap: 5vh 0;
     grid-template-rows: minmax(200px, 1fr) 2fr;
   }
 }
@@ -1190,7 +1189,7 @@ About
   }
 }
 .about__line {
-  height: 2vh;
+  height: 2.5vh;
   width: 100%;
   background-color: rgba(125, 125, 125, 0.5);
   position: absolute;
@@ -1205,7 +1204,7 @@ About
   content: "";
   top: 0;
   left: 0;
-  height: 2vh;
+  height: 2.5vh;
   background: linear-gradient(to right, #6253e1, #852d91, #a3a1ff, #f24645);
 }
 
