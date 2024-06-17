@@ -746,13 +746,12 @@ About
   &__inner {
     display: grid;
     margin: 0 auto;
-    gap: 3vh 0;
+    gap: clamp(2rem, 5.5vh, 7rem) 0;
     grid-template-rows: minmax(150px, 1fr) 2fr;
     opacity: 0;
     transition: opacity 2s;  
 
     @include mq(md) {
-      gap: 5vh 0;
       grid-template-rows: minmax(200px, 1fr) 2fr;
     }
 
