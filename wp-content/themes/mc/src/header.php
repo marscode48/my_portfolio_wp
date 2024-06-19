@@ -60,7 +60,10 @@
           <div class="header__inner">
             <?php $html_tag = (is_home() || is_front_page()) ? 'h1' : 'div'; ?>
             <<?php echo $html_tag; ?> class="header__logo">
-              <a href="<?php echo esc_url(home_url()); ?>">Masakazu Adachi</a>
+              <a href="<?php echo esc_url(home_url()); ?>" class="header__logo-link">
+                <img src="<?php echo esc_url(get_theme_file_uri('images/mars-code-logo.svg')); ?>" alt="MARS-CODE ロゴ" class="header__logo-img">
+                Masakazu Adachi
+              </a>
             </<?php echo $html_tag; ?>>
             <button type="button" class="header__btn">
               <span class="header__line"></span>

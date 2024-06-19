@@ -256,6 +256,22 @@ li {
     font-size: 2rem;
   }
 }
+.header__logo-link {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 1em;
+       column-gap: 1em;
+}
+.header__logo-img {
+  height: 60px;
+  width: 60px;
+}
+@media screen and (min-width: 960px) {
+  .header__logo-img {
+    height: 80px;
+    width: 80px;
+  }
+}
 .header__btn {
   position: relative;
   z-index: 40;

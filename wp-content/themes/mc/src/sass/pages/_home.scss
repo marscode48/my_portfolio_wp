@@ -38,6 +38,22 @@
     @include mq(lg) {
       @include f_around(20, false, false, false);
     }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      column-gap: 1em;
+    }
+
+    &-img {
+      height: 60px;
+      width: 60px;
+
+      @include mq(lg) {
+        height: 80px;
+        width: 80px;
+      }
+    }
   }
 
   &__btn {
