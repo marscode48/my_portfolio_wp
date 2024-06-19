@@ -207,7 +207,7 @@
         </div>
         <div class="skill__list">
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-html.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-html.svg')); ?>" alt="HTML5 ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -217,7 +217,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-css.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-css.svg')); ?>" alt="CSS3 ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -227,7 +227,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-sass.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-sass.svg')); ?>" alt="SASS ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -237,7 +237,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-javascript.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-javascript.svg')); ?>" alt="JavaScript ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -247,7 +247,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-gsap.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-gsap.svg')); ?>" alt="GSAP ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -257,7 +257,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-threejs.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-threejs.svg')); ?>" alt="Three.js ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -267,7 +267,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-vue.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-vue.svg')); ?>" alt="Vue.js ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -277,7 +277,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-git.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-git.svg')); ?>" alt="Git, GitHub ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -287,7 +287,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-shopify.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-shopify.svg')); ?>" alt="Shopify ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
@@ -297,7 +297,7 @@
             </div>
           </div>
           <div class="skill__item">
-            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/logo-wordpress.svg')); ?>" alt=""></p>
+            <p class="skill__img"><img src="<?php echo esc_url(get_theme_file_uri('images/skill-logo-wordpress.svg')); ?>" alt="WordPress ロゴ"></p>
             <div class="skill__body">
               <h3 class="skill__name">
                 <span class="rect"></span>
