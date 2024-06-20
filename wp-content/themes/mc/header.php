@@ -7,11 +7,13 @@
     <meta property='og:title' content='<?php echo bloginfo('name'); ?>'>
     <meta property='og:url' content='<?php echo esc_url(home_url()); ?>'>
     <meta property='og:description' content='<?php bloginfo('description'); ?>'>
-    <meta property="og:image" content="<?php echo esc_url(get_theme_file_uri('/images/ogp.png')); ?>">
+    <meta property="og:image" content="<?php echo esc_url(get_theme_file_uri('images/ogp-1200x630.jpg')); ?>">
     <meta name="description" content="<?php bloginfo('description'); ?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="<?php echo esc_url(get_theme_file_uri('/favicon.ico')); ?>" />
+    <link rel="icon" type="image/png" href="<?php echo esc_url(get_theme_file_uri('images/icon-192x192.png')); ?>">
+    <link rel="apple-touch-icon" type="image/png" href="<?php echo esc_url(get_theme_file_uri('images/apple-touch-icon-180x180.png')); ?>">
+    <link rel="icon" href="<?php echo esc_url(get_theme_file_uri('favicon.ico')); ?>">
     <link rel="canonical" href="<?php echo esc_url(home_url()); ?>" />
     <!-- JSファイル内でパスを取得する変数 -->
     <script> const path = "<?php echo get_template_directory_uri(); ?>";</script>
