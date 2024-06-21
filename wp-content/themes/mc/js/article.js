@@ -81,4 +81,4 @@ class Main {
   }
 }
 
-//# sourceMappingURL=main-article.js.map
+//# sourceMappingURL=article.js.map

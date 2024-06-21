@@ -1,10 +1,10 @@
 import { MouseStalker } from 'mouse-stalker';
 import { MenuOpen } from 'menu-open';
 import { ThreeAnimation } from 'three-animation';
-import { WorksSlider } from 'slider-swiper';
 import { SmoothScroll } from 'smooth-scroll';
 import { ScrollObserver } from 'scroll-observer';
 import { TextAnimation, TweenTextAnimation } from 'text-animation';
+import { BtnAnimation } from 'btn-animation';
 
 document.addEventListener('DOMContentLoaded', () => {
   const main = new Main();
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 class Main {
   constructor() {
     this.header = document.querySelector('.header');
-    this.works = new WorksSlider('.works-page .swiper-thumb', '.works-page .swiper-main', '4000');
     this.#init();
   }
 
@@ -27,9 +26,9 @@ class Main {
   #scrollInit() {
     new ScrollObserver('.mouse-stalker', this.#mouseAnimation.bind(this));
     new ScrollObserver('.nav-trigger', this.#navAnimation.bind(this), { once: false });
-    new ScrollObserver('.swiper-main', this.#toggleWorksAnimation.bind(this), { once: false });
     new ScrollObserver('.appear', this.#inviewAnimation);
     new ScrollObserver('.tween-animate-title', this.#textAnimation, { rootMargin: '-50px 0px' });
+    new ScrollObserver('.contact-page .link', this.#btnAnimation);
   }
 
   #mouseAnimation(el, inview) {
@@ -42,16 +41,6 @@ class Main {
     if (inview) {
       const ta = new TweenTextAnimation(el);
       ta.animate();
-    }
-  }
-
-  #toggleWorksAnimation(el, inview) {
-    if (inview) {
-      this.works.start();
-      console.log('works start is called');
-    } else {
-      this.works.stop();
-      console.log('works stop is called');
     }
   }
 
@@ -68,6 +57,24 @@ class Main {
       el.classList.add('inview');
     }
   }
+
+  #articleParallaxAnimation(el, inview) {
+    if (inview) {
+      new ArticleParallaxAnimation('.article-page .parallax__title', '.article-page .parallax__img');
+    }
+  }
+
+  #articleSlideAnimation(el, inview) {
+    if (inview) {
+      new ArticleSlideAnimation('.article-page .slide__item');
+    }
+  }
+
+  #btnAnimation(el, inview) {
+    if (inview) {
+      new BtnAnimation(el);
+    }
+  }
 }
 
-//# sourceMappingURL=main-works.js.map
+//# sourceMappingURL=contact.js.map

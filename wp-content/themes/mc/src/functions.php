@@ -197,19 +197,19 @@ function my_enqueue_scripts() {
 
   // ページ毎に別のJSを読み込む
   if(is_home() || is_front_page()) {
-    wp_enqueue_script('main', get_theme_file_uri('js/main.js'), array(), false, false);
+    wp_enqueue_script('home', get_theme_file_uri('js/home.js'), array(), false, false);
   }
 
   if(is_archive()) {
-    wp_enqueue_script('works', get_theme_file_uri('js/main-works.js'), array(), false, false);
+    wp_enqueue_script('works', get_theme_file_uri('js/works.js'), array(), false, false);
   }
 
   if(is_single()) {
-    wp_enqueue_script('article', get_theme_file_uri('js/main-article.js'), array(), false, false);
+    wp_enqueue_script('article', get_theme_file_uri('js/article.js'), array(), false, false);
   }
 
   if(is_page('contact') || is_page('contact-thanks')) {
-    wp_enqueue_script('contact', get_theme_file_uri('js/main-contact.js'), array(), false, false);
+    wp_enqueue_script('contact', get_theme_file_uri('js/contact.js'), array(), false, false);
   }
 }
 
@@ -220,7 +220,7 @@ scriptタグにtype=module属性を付与
 **************************************************/
 function add_module($tag, $handle) {
   // モジュールとして扱うスクリプトハンドルの配列
-  $module_handles = array('three', 'main', 'works', 'article', 'contact');
+  $module_handles = array('three', 'home', 'works', 'article', 'contact');
 
   // スクリプトハンドルがモジュールハンドル配列に存在する場合
   if (in_array($handle, $module_handles, true)) {
