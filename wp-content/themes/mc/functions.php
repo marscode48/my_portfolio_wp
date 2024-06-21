@@ -219,24 +219,19 @@ add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
 scriptタグにtype=module属性を付与
 **************************************************/
 function add_module($tag, $handle) {
-  if ( 'three' === $handle ) {
-    $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
+  // モジュールとして扱うスクリプトハンドルの配列
+  $module_handles = array('three', 'main', 'works', 'article', 'contact');
+
+  // スクリプトハンドルがモジュールハンドル配列に存在する場合
+  if (in_array($handle, $module_handles, true)) {
+    // <script type="text/javascript"> を <script type="module"> に変更
+    $tag = str_replace('<script type="text/javascript"', '<script type="module"', $tag);
   }
-  if ( 'main' === $handle ) {
-    $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
-  }
-  if ( 'works' === $handle ) {
-    $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
-  }
-  if ( 'article' === $handle ) {
-    $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
-  }
-  if ( 'contact' === $handle ) {
-    $tag = str_replace( '<script type="text/javascript" ', '<script type="module" ', $tag );
-  }
+
   return $tag;
 }
 
+// script_loader_tagフィルターフックにadd_module関数を登録
 add_filter('script_loader_tag', 'add_module', 10, 2);
 
 /**************************************************
