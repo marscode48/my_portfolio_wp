@@ -79,6 +79,45 @@ function custom_redirects() {
 add_action('template_redirect', 'custom_redirects');
 
 /**************************************************
+importmapタグを追加
+**************************************************/
+function add_importmap_and_shims() {
+  // PHPモードを終了
+  ?>
+  <!-- es-module-shimsを最初に読み込む -->
+  <script async src="https://unpkg.com/es-module-shims@1.8.3/dist/es-module-shims.js"></script>
+
+  <!-- importmapを追加 -->
+  <script type="importmap">
+  {
+    "imports": {
+      "mouse-stalker": "<?php echo get_theme_file_uri('js/libs/mouse-stalker.js'); ?>",
+      "three": "https://unpkg.com/three@0.142.0/build/three.module.js",
+      "menu-open": "<?php echo get_theme_file_uri('js/libs/menu-open.js'); ?>",
+      "main-visual": "<?php echo get_theme_file_uri('js/libs/mv-animation.js'); ?>",
+      "three-animation": "<?php echo get_theme_file_uri('js/libs/three-animation.js'); ?>",
+      "slider-swiper": "<?php echo get_theme_file_uri('js/libs/slider-swiper.js'); ?>",
+      "smooth-scroll": "<?php echo get_theme_file_uri('js/libs/smooth-scroll.js'); ?>",
+      "scroll-observer": "<?php echo get_theme_file_uri('js/libs/scroll-observer.js'); ?>",
+      "works-animation": "<?php echo get_theme_file_uri('js/libs/works-animation.js'); ?>",
+      "text-animation": "<?php echo get_theme_file_uri('js/libs/text-animation.js'); ?>",
+      "skill-animation": "<?php echo get_theme_file_uri('js/libs/skill-animation.js'); ?>",
+      "about-animation": "<?php echo get_theme_file_uri('js/libs/about-animation.js'); ?>",
+      "contact-canvas": "<?php echo get_theme_file_uri('js/libs/contact-canvas.js'); ?>",
+      "btn-animation": "<?php echo get_theme_file_uri('js/libs/btn-animation.js'); ?>",
+      "article-animation": "<?php echo get_theme_file_uri('js/libs/article-animation.js'); ?>",
+      "contact-animation": "<?php echo get_theme_file_uri('js/libs/contact-animation.js'); ?>"
+    }
+  }
+  </script>
+  <?php
+  // PHPモードを再開
+}
+
+// "1"を指定してwp_headアクションの最初に実行
+add_action('wp_head', 'add_importmap_and_shims', 1);
+
+/**************************************************
 CSSファイルの読み込み
 **************************************************/
 function my_enqueue_styles() {
