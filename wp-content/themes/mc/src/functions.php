@@ -209,7 +209,7 @@ function my_enqueue_scripts() {
   }
 
   if(is_page('contact') || is_page('contact-thanks')) {
-    wp_enqueue_script('article', get_theme_file_uri('js/main-contact.js'), array(), false, false);
+    wp_enqueue_script('contact', get_theme_file_uri('js/main-contact.js'), array(), false, false);
   }
 }
 
