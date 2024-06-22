@@ -11,7 +11,7 @@ const sizes = conf.sizes;
 const cssnano = require('cssnano');
 const imageminPngquant = require('imagemin-pngquant');
 const browserSync = require('browser-sync').create();
-const isProd = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === "production";
 
 //----------------------------------------------------------------------
 //  関数定義（WordPress用）distへ出力せずにテーマ直下に出力、browserSyncのproxyにLocalのサイトドメインを設定
@@ -76,25 +76,25 @@ function styles() {
     .pipe($.plumber({
       errorHandler: $.notify.onError('Error: <%= error.message %>')
     }))
-    .pipe($.if(!isProd, $.sourcemaps.init()))
+    .pipe($.if(!isProduction, $.sourcemaps.init()))
     .pipe($.dartSass({
       outputStyle: 'expanded'
     }))
     .pipe($.autoprefixer({
       cascade: true
     }))
-    .pipe($.if(!isProd, $.sourcemaps.write('./')))
-    .pipe($.if(isProd, $.postcss([cssnano({ autoprefixer: false })])))
+    .pipe($.if(!isProduction, $.sourcemaps.write('./')))
+    .pipe($.if(isProduction, $.postcss([cssnano({ autoprefixer: false })])))
     .pipe(dest('./'))
     .pipe($.debug({title: 'scss dest:'}));
 }
 
 function scripts() {
   return src(['./src/js/**/*.js', '!./src/js/vendors/*.js'])
-    .pipe($.if(!isProd, $.sourcemaps.init()))
+    .pipe($.if(!isProduction, $.sourcemaps.init()))
     // .pipe($.babel())
-    .pipe($.if(!isProd, $.sourcemaps.write('./')))
-    .pipe($.if(isProd, $.uglify()))
+    .pipe($.if(!isProduction, $.sourcemaps.write('./')))
+    .pipe($.if(isProduction, $.uglify()))
     .pipe(dest('./js'));
 }
 
@@ -159,6 +159,7 @@ function startAppServer() {
 const build = series(clean, parallel(imagemin, extras, styles, series(lint, scripts)));
 const serve = series(build, startAppServer);
 
+// 外部に公開してGulp CLIからタスクを実行（使用例：gulp build）
 exports.icon = icon;
 exports.resize = resize;
 exports.imagemin = imagemin;
