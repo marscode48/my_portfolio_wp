@@ -1,0 +1,113 @@
+@use "globals" as *;
+
+.pace-done #global-wrapper {
+  transition: opacity 1s;
+  opacity: 1;
+  visibility: visible;
+}
+
+#global-wrapper {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.pace {
+	pointer-events: none;
+	user-select: none;
+	z-index: 2000;
+	position: fixed;
+  inset: 0; // top,right,bottom,leftを一括指定
+	margin: auto; // 中央揃え
+	width: 150px;
+	height: 150px;
+
+  & .pace-progress {
+    transform: none !important;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    row-gap: 1.5rem;
+
+    // パーセント表示
+    &::after {
+      content: attr(data-progress-text);
+      display: inline-block;
+      @include f_around(15, false, 100, false);
+      @include mq(lg) {
+        @include f_around(20, false, false, false);
+      }
+      background: linear-gradient(
+      to right,
+      $cMainPurple1,
+      $cMainPurple2,
+      $cMainPurple3,
+      $cMainPurple4
+      );
+      color: $cMainPurple1; // 文字グラデーション非対応のブラウザ
+      background-clip: text;
+      -webkit-background-clip: text; // テキストを切り抜く
+      -webkit-text-fill-color: transparent; // 切り抜いた部分は背景を表示
+    }
+  }
+
+  &.pace-inactive {
+    display: none;
+  }
+
+  // ローダー
+  & .pace-progress-inner {
+    position: relative;
+    width: 75px;
+    height: 75px;
+
+    @include mq(lg) {
+      width: 100px;
+      height: 100px;
+    }
+  
+    &::before, &::after {
+      content: '';
+      border-radius: 50%; 
+      position: absolute;
+      inset: 0; // top,right,bottom,leftを一括指定
+      margin: auto; // 水平方向の中央揃え
+    }
+  
+    &::before {
+      background-color: $cBlack;
+      box-shadow: $loader-shadow;
+      z-index: 1;
+    }
+  
+    &::after {
+      background: linear-gradient(
+        to right,
+        $cMainPurple1,
+        $cMainPurple2,
+        $cMainPurple3,
+        $cMainPurple4
+      );
+      filter: blur(1px);
+      scale: 1.05;
+      z-index: -1;
+      @include animation(
+        $name: loader-rotate,
+        $duration: 0.8s,
+        $timing-function: linear,
+        $delay: 0s,
+        $iteration-count: infinite,
+        $direction: normal,
+        $fill-mode: forwards
+      );
+    }
+  }
+}
+
+@keyframes loader-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% { 
+    transform: rotate(360deg);
+  }
+}

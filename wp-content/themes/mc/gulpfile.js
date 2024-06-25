@@ -11,10 +11,10 @@ const sizes = conf.sizes;
 const cssnano = require('cssnano');
 const imageminPngquant = require('imagemin-pngquant');
 const browserSync = require('browser-sync').create();
-const isProd = process.env.NODE_ENV === "production";
+const isProduction = process.env.NODE_ENV === "production";
 
 //----------------------------------------------------------------------
-//  関数定義
+//  関数定義（WordPress用）distへ出力せずにテーマ直下に出力、browserSyncのproxyにLocalのサイトドメインを設定
 //----------------------------------------------------------------------
 function icon(done) {
   for (let size of sizes){
@@ -30,7 +30,7 @@ function icon(done) {
       upscale: false
     }))
     .pipe($.rename(`favicon-${width}x${height}.png`))
-    .pipe(dest('./dist/images/icon'));
+    .pipe(dest('./images/icon'));
   }
   done();
 }
@@ -68,7 +68,7 @@ function imagemin() {
       ]
     })
   ]))
-  .pipe(dest("./dist/images"));
+  .pipe(dest("./images"));
 }
 
 function styles() {
@@ -76,26 +76,26 @@ function styles() {
     .pipe($.plumber({
       errorHandler: $.notify.onError('Error: <%= error.message %>')
     }))
-    .pipe($.if(!isProd, $.sourcemaps.init()))
+    .pipe($.if(!isProduction, $.sourcemaps.init()))
     .pipe($.dartSass({
       outputStyle: 'expanded'
     }))
     .pipe($.autoprefixer({
       cascade: true
     }))
-    .pipe($.if(!isProd, $.sourcemaps.write('./')))
-    .pipe($.if(isProd, $.postcss([cssnano({ autoprefixer: false })])))
-    .pipe(dest('./dist/css'))
+    .pipe($.if(!isProduction, $.sourcemaps.write('./')))
+    .pipe($.if(isProduction, $.postcss([cssnano({ autoprefixer: false })])))
+    .pipe(dest('./'))
     .pipe($.debug({title: 'scss dest:'}));
 }
 
 function scripts() {
   return src(['./src/js/**/*.js', '!./src/js/vendors/*.js'])
-    .pipe($.if(!isProd, $.sourcemaps.init()))
+    .pipe($.if(!isProduction, $.sourcemaps.init()))
     // .pipe($.babel())
-    .pipe($.if(!isProd, $.sourcemaps.write('./')))
-    .pipe($.if(isProd, $.uglify()))
-    .pipe(dest('./dist/js'));
+    .pipe($.if(!isProduction, $.sourcemaps.write('./')))
+    .pipe($.if(isProduction, $.uglify()))
+    .pipe(dest('./js'));
 }
 
 function lint() {
@@ -118,18 +118,26 @@ function extras() {
     './src/audio/**',
   ], {
     base: 'src'
-  }).pipe(dest('./dist'));
+  }).pipe(dest('./'));
 }
 
 function clean() {
-  return del(['./dist']);
+  return del([
+    './*.html',
+    './*.php',
+    './*.ico',
+    './*.png',
+    './css/**',
+    './js/**',
+    './images/**',
+    './video/**',
+    './audio/**',
+  ]);
 }
 
 function startAppServer() {
   browserSync.init({
-    server: {
-      baseDir: "dist",
-    },
+    proxy : "mars-code.local", // Localのサイトドメインに合わせる
   });
 
   watch('./src/sass/**/*.scss', styles);
@@ -151,6 +159,7 @@ function startAppServer() {
 const build = series(clean, parallel(imagemin, extras, styles, series(lint, scripts)));
 const serve = series(build, startAppServer);
 
+// 外部に公開してGulp CLIからタスクを実行（使用例：gulp build）
 exports.icon = icon;
 exports.resize = resize;
 exports.imagemin = imagemin;

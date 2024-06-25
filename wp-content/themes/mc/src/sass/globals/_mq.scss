@@ -1,0 +1,37 @@
+// モバイルファースト
+
+$breakpoints: (
+  // 480px以上(スマホの横向き)のモニタで適用
+  'sm': 'screen and (min-width: 480px)',
+  // 600px以上のタブレットやモニタで適用
+  'md': 'screen and (min-width: 600px)',
+  // 960px以上のモニタで適用
+  'lg': 'screen and (min-width: 960px)',
+  // 1280px以上のモニタで適用
+  'xl': 'screen and (min-width: 1280px)',
+) !default;
+
+@mixin mq($breakpoint: lg) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+// PCファースト
+
+// $breakpoints: (
+//   // 480px以下(スマホの横向き)のモニタで適用
+//   'sm': 'screen and (max-width: 480px)',
+//   // 767px以下のタブレットやモニタで適用
+//   'md': 'screen and (max-width: 767px)',
+//   // 960px以下のモニタで適用
+//   'lg': 'screen and (max-width: 960px)',
+//   // 1280px以下のモニタで適用
+//   'xl': 'screen and (max-width: 1280px)',
+// ) !default;
+
+// @mixin mq($breakpoint: md) {
+//   @media #{map-get($breakpoints, $breakpoint)} {
+//     @content;
+//   }
+// }

@@ -1,0 +1,530 @@
+@use "../globals" as *;
+@use "../parts/common" as *;
+
+/*--------------------------------
+下層：Worksページ
+---------------------------------*/
+.works-page {
+  overflow: hidden; // エリア内にスライド要素を収める
+
+  & .appear.up.inview {
+    .works-page__list.item:nth-child(1) {
+      transition-delay: 0.8s;
+    }
+  }
+
+  // swiper
+  & .swiper {
+    max-width: 720px;
+  }
+
+  & .swiper-main {
+    overflow: visible; // 前後のスライドを表示
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom right,
+        $cMainPurple1,
+        $cMainPurple2,
+        $cMainPurple3,
+        $cMainPurple4
+      );
+      filter: blur(100px) opacity(0.6);
+      transform: translateY(10px) scale(1.1);
+    }
+  }
+
+  & .swiper-thumb {
+    padding-top: 10px;
+  }
+
+  // 戻る、次へボタン
+  & .swiper-controller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: $works-page-img-sm; // .slide__img-wrapperと同じ高さ
+
+    @include mq(lg) {
+      padding-top: $works-page-img-lg; // .slide__img-wrapperと同じ高さ
+    }
+  }
+
+  // スライド番号
+  & .swiper-fraction {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding-top: calc($works-page-img-sm - 10%);
+    padding-right: 10%;
+    height: max-content;
+    font-weight: bold;
+    color: $cWhite;
+    display: flex;
+    align-items: flex-end;
+    pointer-events: none;
+    
+    @include mq(lg) {
+      padding-top: calc($works-page-img-lg - 10%);
+    }
+
+    &-current {
+      @include f_around(16, false, false, 16);
+      display: inline-block;
+      overflow: hidden;
+      width: 2.5rem;
+
+      @include mq(md) {
+        @include f_around(18, false, false, false);
+      }
+    }
+
+    &-num {
+      display: block;
+
+      &.fraction-started {
+        @include animation(
+          $name: works-page-fraction,
+          $duration: 1s,
+          $timing-function: cubic-bezier(0.2, 1, 0.2, 1),
+          $delay: 0s,
+          $iteration-count: 1,
+          $direction: normal,
+          $fill-mode: forwards
+        );
+      }
+    }
+
+    &-total {
+      @include f_around(10, false, false, 10);
+      vertical-align: baseline;
+
+      @include mq(md) {
+        @include f_around(12, false, false, false);
+      }
+
+      &::before {
+        content: " / ";
+      }
+    }
+  }
+
+  & .swiper-button-prev, & .swiper-button-next {
+    display: grid;
+    place-content: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    margin: auto; // position: absoluteと組み合わせて中央揃え
+  }
+
+  & .swiper-button-prev:active, & .swiper-button-next:active {
+    transition: unset;
+    filter: brightness(0.85);
+  }
+
+  & .swiper-button-prev::before, & .swiper-button-next::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: "";
+    border-radius: 50%;
+    background-size: 300% 100%;
+    background-image: linear-gradient(
+      to right,
+      $cMainPurple1,
+      $cMainPurple2,
+      $cMainPurple3,
+      $cMainPurple4
+      );
+    box-shadow: $btn-shadow;
+    
+    @include mq(lg) {
+      transition: all 1s ease-in-out;
+    }
+  }
+
+  & .swiper-button-prev:hover::before, & .swiper-button-next:hover::before {
+    @include mq(lg) {
+      text-decoration: none;
+      transition: all 0.4s ease-in-out;
+      transform: scale(1.2);
+      background-position: 100% 0;
+      filter: brightness(1.15);
+      box-shadow: $btn-shadow-hover;
+    }
+  }
+
+  & .swiper-button-prev::after, & .swiper-button-next::after {
+    width: 0.6rem;
+    height: 0.6rem;
+    content: "";
+    border: solid $cWhite;
+    border-width: 1.5px 1.5px 0 0;
+
+    @include mq(lg) {
+      transition: all 1s ease;
+    }
+  }
+
+  & .swiper-button-prev:hover::after, & .swiper-button-next:hover::after {
+    @include mq(lg) {
+      transition: all 0.4s ease-in-out;
+    }
+  }
+
+  & .swiper-button-prev {
+    right: calc(100% - 3.2rem);
+
+    @include mq(lg) {
+      right: calc(100% - 7.2rem);
+    }
+
+    &::after {
+      margin-left: 0.2rem;
+      transform: rotate(-135deg);
+    }
+
+    &:hover::after {
+      @include mq(lg) {
+        transform: translateX(-30%) rotate(-135deg);
+      }
+    }
+  }
+
+  & .swiper-button-next {
+    left: calc(100% - 3.2rem);
+    
+    @include mq(lg) {
+      left: calc(100% - 7.2rem);
+    }
+
+    &::after {
+      margin-right: 0.2rem;
+      transform: rotate(45deg);
+    }
+
+    &:hover::after {
+      @include mq(lg) {
+        transform: translateX(30%) rotate(45deg);
+      }
+    }
+  }
+
+  & .swiper-button-disabled {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  & .swiper-scrollbar {
+    position: relative;
+    margin-top: 10px;
+
+    &::after {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      margin: auto; // position: absoluteと組み合わせて中央揃え
+      content: "";
+      background-color: $cBgGray;
+    }
+  }
+
+  & .swiper-scrollbar-drag {
+    height: 20px;
+    padding: 8px 0;
+    cursor: grab;
+    background: linear-gradient(
+      to right,
+      $cMainPurple1,
+      $cMainPurple2,
+      $cMainPurple3,
+      $cMainPurple4
+    );
+    background-clip: content-box; // 要素の背景の拡張を指定
+
+    &:hover {
+      @include mq(lg) {
+        filter: brightness(1.15);
+      }
+    }
+
+    &:active {
+      transition: unset;
+      filter: brightness(0.85);
+    }
+  }
+
+  // メインスライド
+  & .slide {
+    display: block;
+    overflow: hidden;
+
+    &__img-wrapper {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden; // 子要素のborder-radiusを丸にする
+      padding-top: $works-page-img-sm;
+      // アスペクト比（幅と高さの比、縦横比）を一定に固定してサイズを可変
+      // 基準値（swiper）のwidthが可変した時、高さ方向のpaddingも同じく可変する
+
+      @include mq(lg) {
+        padding-top: $works-page-img-lg;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        background: linear-gradient(
+          to bottom right,
+          $cMainPurple1,
+          $cMainPurple2,
+          $cMainPurple3,
+          $cMainPurple4
+        );
+        opacity: 0.3;
+        box-shadow: inset 0 0 50px 20px $cBlack;
+      }
+    }
+
+    &__img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 5s linear;
+      transform: translateX(-1.5%) scale(1.2);
+    }
+
+    &__title, &__text, &__link {
+      opacity: 0;
+      visibility: hidden;
+    }
+  
+    &__title {
+      padding: 2rem 2rem 0;
+      @include f_around(20, 700, 50, 20);
+  
+      @include mq(lg) {
+        @include f_around(26, false, 100, false);
+        padding: 2rem 6rem 0;
+      }
+    }
+
+    &__title, &__text {
+      text-shadow: 0 0 10px $cBlack;
+    }
+  
+    &__text {
+      padding: 0 2rem;
+      margin-top: 8px;
+      @include f_around(12, false, 50, 12);
+  
+      @include mq(lg) {
+        padding: 0 6rem;
+        margin-top: 12px;
+        @include f_around(16, false, 75, false);
+      }
+    }
+  
+    &__link {
+      padding: 0rem 2rem 2rem;
+      margin-top: 20px;
+  
+      @include mq(lg) {
+        padding: 0 6rem 2rem;
+      }
+  
+       & > a {
+        display: block;
+        margin: 0 auto;
+       }
+    }
+  }
+
+  // サムネイル
+  & .thumb {
+
+    &__img-wrapper {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden; // 子要素のborder-radiusを丸にする、hoverのtranslateY(-10px)分を隠す
+      padding-top: $works-page-img-sm; // swiperのwidthを基準としてアスペクト比を決定
+      transition: all 0.25s ease-out;
+
+      @include mq(lg) {
+        padding-top: $works-page-img-lg;
+      }
+
+      &:hover {
+        @include mq(lg) {
+          transform: translateY(-10px); // imgの親要素（画像全体）を上に動かす
+        }
+
+        & .thumb__img {
+          transform: translateY(0); // imgは-10pxから元に戻して固定する（パララックス）
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        background: linear-gradient(
+          to bottom right,
+          $cMainPurple1,
+          $cMainPurple2,
+          $cMainPurple3,
+          $cMainPurple4
+        );
+        opacity: 0.3;
+        box-shadow: inset 0 0 50px 20px $cBlack;
+      }
+    }
+
+    &__img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      height: calc(100% + 10px); // 高さを追加してimgの下側も動かす
+      transition: all 0.25s ease-out;
+      transform: translateY(-10px); // 初期状態でimgを上に上げておく
+    }
+  }
+
+  & .swiper-slide-thumb-active {
+    transition: all 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+    filter: brightness(1.5);
+
+    & .thumb__img-wrapper {
+      transform: translateY(-10px); // imgの親要素（画像全体）を上に動かす
+    }
+
+    & .thumb__img {
+      transform: translateY(0); // imgは-10pxから元に戻して固定する（パララックス）
+    }
+  }
+
+  // [class*=-active]でduplicate-activeは適用（表示）させない
+  & .swiper-slide-active {
+
+    & .slide__img {
+      transition-delay: 0s;
+      transform: translateX(0%) scale(1);
+    }
+
+    & .slide__title, & .slide__text {
+      visibility: visible;
+      @include animation(
+        $name: works-page-hero-fadeIn,
+        $duration: 1.3s,
+        $timing-function: cubic-bezier(.2, 1, .2, 1),
+        $delay: 0s,
+        $iteration-count: 1,
+        $direction: normal,
+        $fill-mode: both
+      );
+    }
+
+    & .slide__text {
+      animation-delay: 0.2s;
+    }
+
+    & .slide__link {
+      visibility: visible;
+      @include animation(
+        $name: works-page-btn-up,
+        $duration: 0.7s,
+        $timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940),
+        $delay: 1s,
+        $iteration-count: 1,
+        $direction: normal,
+        $fill-mode: both
+      );
+
+      & .btn {
+        @include animation(
+          $name: btnGradietion,
+          $duration: 1s,
+          $timing-function: ease,
+          $delay: 1s,
+          $iteration-count: 1,
+          $direction: normal,
+          $fill-mode: none
+        );
+      }
+    }
+  }
+
+  @keyframes works-page-hero-fadeIn {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+      filter: blur(300px);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  @keyframes works-page-fraction {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-110%);
+      opacity: 1;
+    }
+    50.1% {
+      transform: translateY(110%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes works-page-btn-up {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}

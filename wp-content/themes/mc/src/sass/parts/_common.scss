@@ -1,0 +1,223 @@
+@use "../globals" as *;
+/*--------------------------------
+ 全体
+---------------------------------*/
+html {
+  font-size: 62.5%;
+
+  // メニューを開いている間は背景スクロールを禁止
+  &.fixed {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+body {
+  font-family: "Exo 2",
+    "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
+  @include f_around(14, false, false, false);
+  color: $cWhite;
+  background-color: $cBlack;
+
+  @include mq(lg) {
+    @include f_around(15, false, false, false);
+  }
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+a {
+  transition: opacity .3s;
+  text-decoration: none;
+  color: $cWhite;
+}
+
+li {
+  list-style: none;
+}
+
+.sp-only {
+  display: block;
+  
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.pc-only {
+  display: none;
+  
+  @include mq(md) {
+    display: block;
+  }
+}
+
+/*--------------------------------
+ 見出し
+---------------------------------*/
+.heading-primary {
+  @include f_around(26, 700, 50, 26);
+  text-align: center;
+
+  @include mq() {
+    @include f_around(34, false, false, false);
+  }
+}
+
+/*--------------------------------
+ボタン
+---------------------------------*/
+
+.link {
+  opacity: 0;
+  visibility: hidden;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 160px;
+  @include f_around(12, 700, 100, 12);
+  padding: 18px 0;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $cWhite;
+  border-radius: 50px;
+  background-size: 300% 100%;
+  background-image: linear-gradient(
+    to right,
+    $cMainPurple1,
+    $cMainPurple2,
+    $cMainPurple3,
+    $cMainPurple4
+    );
+  box-shadow: $btn-shadow;
+
+  @include mq(lg) {
+    width: 220px;
+    @include f_around(14, false, false, 14);
+    transition: all 1s ease-in-out;
+  }
+    
+  &-icon {
+    position: absolute;
+    font-size: 1em;
+    top: 50%;
+    right: 3em;
+    transform: translateY(-50%);
+    
+    @include mq() {
+      transition: all 1s ease;
+      right: 4em;
+    }
+  }
+
+  &:hover {
+    @include mq(lg) {
+      text-decoration: none;
+      transition: all 0.4s ease-in-out;
+      background-position: 100% 0;
+      filter: brightness(1.15);
+      box-shadow: $btn-shadow-hover;
+    }
+
+    & .btn-icon {
+      @include mq(lg) {
+        right: 3.5em;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
+  &:active {
+    transition: unset;
+    filter: brightness(0.85);
+  }
+
+  &.gradietion-active {
+    @include animation(
+      $name: btnGradietion,
+      $duration: 1s,
+      $timing-function: ease,
+      $delay: 0s,
+      $iteration-count: 1,
+      $direction: normal,
+      $fill-mode: none
+    );
+  }
+}
+
+@keyframes btnGradietion { 
+  0% {
+    background-position:100% 0
+  }
+  100% {
+    background-position:0% 0
+  }
+}
+
+
+/*--------------------------------
+ レイアウト
+---------------------------------*/
+.wrapper {
+  padding-top: 60px;
+
+  @include mq() {
+    padding-top: 80px;
+  }
+}
+
+#mainCanvas {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
+}
+
+.section {
+  padding: 60px 0;
+
+  @include mq() {
+    padding: 90px 0;
+  }
+
+  // &:nth-of-type(odd) {
+  //   background-color: $cBgGray;
+  // }
+  
+  &__body {
+    margin-top: 40px;
+
+    @include mq(md) {
+      margin-top: 60px;
+    }
+
+    @include mq(lg) {
+      margin-top: 80px;
+    }
+  }
+}
+
+.container {
+  max-width: $contentMaxWidth;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include mq() {
+    padding: 0 40px;
+  }
+}
