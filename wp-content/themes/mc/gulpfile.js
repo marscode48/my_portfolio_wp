@@ -137,7 +137,7 @@ function clean() {
 
 function startAppServer() {
   browserSync.init({
-    proxy : "mars-code.local", // Localのサイトドメインに合わせる
+    proxy : "test.mars-code.local", // Localのサイトドメインに合わせる
   });
 
   watch('./src/sass/**/*.scss', styles);
