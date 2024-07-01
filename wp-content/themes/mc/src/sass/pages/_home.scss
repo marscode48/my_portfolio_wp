@@ -757,7 +757,7 @@ About
 ---------------------------------*/
 .about {
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh; // ビューポートの高さを動的に変化させて必ず全画面にする
 
   &__inner {
     display: grid;
