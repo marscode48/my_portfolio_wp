@@ -28,78 +28,73 @@ export class ContactCanvas {
       };
 
       // 背景グラデーション
-      p.bgGradation = () => {
-        const bgPalette = ['hsl(0, 100%, 10%)', 'hsl(50, 100%, 10%)']; // 背景色
+      p.bgGradation = (bgPalette = ['hsl(0, 100%, 10%)', 'hsl(50, 100%, 10%)']) => {
+        const startColor = p.color(bgPalette[0]); // 開始色
+        const endColor = p.color(bgPalette[1]); // 終了色
 
+        // 画面の高さに基づいてグラデーションを描画
         for (let i = 0; i <= p.height; i += 1) {
-          const bgColor = p.lerpColor(p.color(bgPalette[0]), p.color(bgPalette[1]), i / p.height);
-          p.stroke(bgColor);
-          p.line(0, i, p.width, i);
+          const lerpedColor = p.lerpColor(startColor, endColor, i / p.height); // 線形補間された色を計算
+          p.stroke(lerpedColor); // 補間色を設定
+          p.line(0, i, p.width, i); // 水平線を描画
         }
       };
 
       // 円グラデーション
       p.circleGradation = () => {
+        // x軸の円の数, y軸の円の数、円の最大サイズ
+        let xNumber; let yNumber; let
+          maxDiameter;
+
+        // レスポンシブで円の数とサイズを対応
         if (window.matchMedia('(max-width: 599px)').matches) {
-          const yNumber = 5; // y軸の円の数
-          const xNumber = 5; // x軸の円の数
-
-          for (let j = 0; j < yNumber; j += 1) {
-            for (let i = 0; i < xNumber; i += 1) {
-              const translateX = (p.width / (xNumber - 1)) * i; // 円の数から-1を引いて画面端の左右の隙間を埋める
-              const translateY = (p.height / (yNumber - 1)) * j; // 円の数から-1を引いて画面端の左右の隙間を埋める
-
-              const mouseDist = p.dist(translateX, translateY, p.mouseX, p.mouseY); // 円ごとにマウスからの距離を計算
-              const circleDiameter = p.map(mouseDist, 0, p.dist(0, 0, p.width, p.height), 0, 100); // 距離の範囲を円のサイズの範囲に変換
-
-              const hsbDist = p.dist(translateX, translateY, p.width / 2, p.height / 2); // 円ごとに画面中央からの距離を計算
-              const hsb = p.map(hsbDist, 0, p.dist(0, 0, p.width / 2, p.height / 2), 230, 300); // 端から中央までグラデーション
-
-              p.fill(hsb, 100, 75);
-              p.circle(translateX, translateY, circleDiameter);
-            }
-          }
-        } else if (window.matchMedia('(min-width:600px)').matches) {
-          const yNumber = 6; // y軸の円の数
-          const xNumber = 12; // x軸の円の数
-
-          for (let j = 0; j < yNumber; j += 1) {
-            for (let i = 0; i < xNumber; i += 1) {
-              const translateX = (p.width / (xNumber - 1)) * i; // 円の数から-1を引いて画面端の左右の隙間を埋める
-              const translateY = (p.height / (yNumber - 1)) * j; // 円の数から-1を引いて画面端の左右の隙間を埋める
-
-              const mouseDist = p.dist(translateX, translateY, p.mouseX, p.mouseY); // 円ごとにマウスからの距離を計算
-              const circleDiameter = p.map(mouseDist, 0, p.dist(0, 0, p.width, p.height), 0, 180); // 距離の範囲を円のサイズの範囲に変換
-
-              const hsbDist = p.dist(translateX, translateY, p.width / 2, p.height / 2); // 円ごとに画面中央からの距離を計算
-              const hsb = p.map(hsbDist, 0, p.dist(0, 0, p.width / 2, p.height / 2), 230, 320); // 端から中央までグラデーション
-
-              p.fill(hsb, 100, 75);
-              p.circle(translateX, translateY, circleDiameter);
-            }
-          }
+          xNumber = 6;
+          yNumber = 12;
+          maxDiameter = 70;
+        } else if (window.matchMedia('(max-width: 1279px)').matches) {
+          xNumber = 9;
+          yNumber = 9;
+          maxDiameter = 85;
+        } else {
+          xNumber = 12;
+          yNumber = 6;
+          maxDiameter = 100;
         }
+
+        const drawCircles = (xNum, yNum, maxDiam) => {
+          for (let j = 0; j < yNum; j += 1) {
+            for (let i = 0; i < xNum; i += 1) {
+              const translateX = (p.width / (xNum - 1)) * i; // 円の数から-1を引いて画面端の左右の隙間を埋める
+              const translateY = (p.height / (yNum - 1)) * j; // 円の数から-1を引いて画面端の上下の隙間を埋める
+
+              const mouseDist = p.dist(translateX, translateY, p.mouseX, p.mouseY); // 円ごとにマウスからの距離を計算
+              const circleDiameter = p.map(mouseDist, 0, p.dist(0, 0, p.width, p.height), 0, maxDiam); // 距離の範囲を円のサイズの範囲に変換
+
+              const hsbDist = p.dist(translateX, translateY, p.width / 2, p.height / 2); // 円ごとに画面中央からの距離を計算
+              const hsb = p.map(hsbDist, 0, p.dist(0, 0, p.width / 2, p.height / 2), 180, 350); // 端から中央までグラデーション
+
+              p.fill(hsb, 100, 75);
+              p.circle(translateX, translateY, circleDiameter);
+            }
+          }
+        };
+
+        drawCircles(xNumber, yNumber, maxDiameter);
       };
 
       // オーロラ
-      p.aurora = () => {
-        const lineNum = 10; // ラインの数
-        const segmentNum = 20; // 分割数
-
+      // lineNum(ラインの数), segmentNum(分割数), centerHue(基準色), hueRange(色の幅), satuRange(彩度の幅), lumiRange(明度の幅), speed(時間経過)
+      p.aurora = (lineNum = 10, segmentNum = 20, centerHue = 235, hueRange = 60, satuRange = 25, lumiRange = 25, speed = 0.2) => {
         let radian = 0; // ラジアン（角度）
-        const centerHue = 235; // 基準色
-        const hueRange = 60; // 色の幅
-        const satuRange = 25; // 彩度の幅
-        const lumiRange = 25; // 明度の幅
-        const speed = 0.2; // 時間経過
 
         for (let j = 0; j < lineNum; j += 1) {
           const time = Date.now() / 2500; // 媒介変数(時間)
           const coefficient = 30 + j; // 係数
 
-          const h = centerHue + Math.round(Math.cos(radian) * hueRange); // 色相（hue）⁠
-          const s = 75 + Math.round(Math.cos(radian) * satuRange); // 彩度（saturation）
-          const l = 100 - Math.round(Math.cos(radian) * lumiRange); // 明度（luminance）
+          // 色相(hue), 彩度(saturation), 明度(luminance)
+          const h = centerHue + Math.round(Math.cos(radian) * hueRange);
+          const s = 75 + Math.round(Math.cos(radian) * satuRange);
+          const l = 100 - Math.round(Math.cos(radian) * lumiRange);
 
           radian += speed; // 時間経過でラジアンを増やす
 
@@ -110,9 +105,8 @@ export class ContactCanvas {
             const x = (i / (segmentNum - 1)) * p.width; // X座標
             const px = i / coefficient; // 横軸の入力値（水平方向の距離）
             const py = (j / 30 + time); // 時間の入力値
-            // console.log(px, py);
+
             const randomValue = p.noise(px, py); // 乱数
-            // console.log(randomValue);
             const y = randomValue * p.height; // Y座標（乱数 * 高さ）
 
             p.vertex(x, y);
