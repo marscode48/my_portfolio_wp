@@ -85,7 +85,8 @@ export class ContactCanvas {
       // オーロラ
       // lineNum(ラインの数), segmentNum(分割数), centerHue(基準色), hueRange(色の幅), satuRange(彩度の幅), lumiRange(明度の幅), speed(時間経過)
       p.aurora = (lineNum = 10, segmentNum = 20, centerHue = 235, hueRange = 60, satuRange = 25, lumiRange = 25, speed = 0.2) => {
-        let radian = 0; // ラジアン（角度）
+        let radian = 0; // ラジアン(角度)
+        const isResponsive = window.innerWidth < 1280; // レスポンシブのチェック
 
         for (let j = 0; j < lineNum; j += 1) {
           const time = Date.now() / 2500; // 媒介変数(時間)
@@ -101,15 +102,30 @@ export class ContactCanvas {
           p.beginShape(p.QUADS);
           p.stroke(h, s, l);
 
-          for (let i = 0; i < segmentNum; i += 1) {
-            const x = (i / (segmentNum - 1)) * p.width; // X座標
-            const px = i / coefficient; // 横軸の入力値（水平方向の距離）
-            const py = (j / 30 + time); // 時間の入力値
+          if (isResponsive) {
+            // 画面の横幅が1280px未満の場合
+            for (let i = 0; i < segmentNum; i += 1) {
+              const y = (i / (segmentNum - 1)) * p.height; // Y座標
+              const py = i / coefficient; // 縦軸の入力値(垂直方向の距離)
+              const px = (j / 30 + time); // 時間の入力値
 
-            const randomValue = p.noise(px, py); // 乱数
-            const y = randomValue * p.height; // Y座標（乱数 * 高さ）
+              const randomValue = p.noise(py, px); // 乱数(パーリンノイズ)
+              const x = randomValue * p.width; // X座標(乱数 * 横幅)
 
-            p.vertex(x, y);
+              p.vertex(x, y);
+            }
+          } else {
+            // 画面の横幅が1280px以上の場合
+            for (let i = 0; i < segmentNum; i += 1) {
+              const x = (i / (segmentNum - 1)) * p.width; // X座標
+              const px = i / coefficient; // 横軸の入力値(水平方向の距離)
+              const py = (j / 30 + time); // 時間の入力値
+
+              const randomValue = p.noise(px, py); // 乱数(パーリンノイズ)
+              const y = randomValue * p.height; // Y座標(乱数 * 高さ)
+
+              p.vertex(x, y);
+            }
           }
 
           p.endShape();
