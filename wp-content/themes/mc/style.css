@@ -1659,14 +1659,14 @@ Contact
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 10px;
   margin: auto;
   content: "";
   background-color: rgba(125, 125, 125, 0.3);
 }
 .works-page .swiper-scrollbar-drag {
   height: 20px;
-  padding: 8px 0;
+  padding: 5px 0;
   cursor: grab;
   background: linear-gradient(to right, #6253e1, #852d91, #a3a1ff, #f24645);
   background-clip: content-box;
