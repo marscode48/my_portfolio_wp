@@ -1414,25 +1414,20 @@ Contact
   transition: 0.3s all cubic-bezier(0.37, 0, 0.63, 1);
 }
 .footer__link {
-  display: inline-block;
-  position: relative;
-  overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 0.5em;
+       column-gap: 0.5em;
 }
-.footer__link-icon {
-  position: absolute;
-  font-size: 1em;
-  top: 50%;
-  left: -1.25em;
-  transition: all 0.6s ease;
-  opacity: 0;
-  transform: translateX(-8px) translateY(-50%);
+.footer__link-logo {
+  width: 1.4rem;
+  height: 1.4rem;
 }
-.footer__link-icon.appear.inview {
-  opacity: 1;
-  transform: translateX(0) translateY(-50%);
-}
-.footer__link .tween-animate-title {
-  display: inline-block;
+@media screen and (min-width: 960px) {
+  .footer__link-logo {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
 }
 .footer__copyright {
   margin-top: 40px;
