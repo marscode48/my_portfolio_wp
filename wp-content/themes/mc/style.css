@@ -926,7 +926,7 @@ About
 ---------------------------------*/
 .about {
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh;
 }
 .about__inner {
   display: grid;
@@ -1277,13 +1277,14 @@ Contact
   align-items: center;
   row-gap: 20px;
   width: 100%;
-  height: 300px;
+  height: 65svh;
   overflow: hidden;
   box-shadow: inset 0 0 18px 3px rgba(0, 0, 0, 0.7);
 }
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1280px) {
   .contact__inner {
-    height: 400px;
+    min-height: 400px;
+    max-height: 50vh;
   }
 }
 .contact__inner.bg-active .contact__canvas {
@@ -1413,25 +1414,20 @@ Contact
   transition: 0.3s all cubic-bezier(0.37, 0, 0.63, 1);
 }
 .footer__link {
-  display: inline-block;
-  position: relative;
-  overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 0.5em;
+       column-gap: 0.5em;
 }
-.footer__link-icon {
-  position: absolute;
-  font-size: 1em;
-  top: 50%;
-  left: -1.25em;
-  transition: all 0.6s ease;
-  opacity: 0;
-  transform: translateX(-8px) translateY(-50%);
+.footer__link-logo {
+  width: 1.4rem;
+  height: 1.4rem;
 }
-.footer__link-icon.appear.inview {
-  opacity: 1;
-  transform: translateX(0) translateY(-50%);
-}
-.footer__link .tween-animate-title {
-  display: inline-block;
+@media screen and (min-width: 960px) {
+  .footer__link-logo {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
 }
 .footer__copyright {
   margin-top: 40px;
@@ -1658,14 +1654,14 @@ Contact
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 10px;
   margin: auto;
   content: "";
   background-color: rgba(125, 125, 125, 0.3);
 }
 .works-page .swiper-scrollbar-drag {
   height: 20px;
-  padding: 8px 0;
+  padding: 5px 0;
   cursor: grab;
   background: linear-gradient(to right, #6253e1, #852d91, #a3a1ff, #f24645);
   background-clip: content-box;

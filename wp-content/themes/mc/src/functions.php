@@ -216,6 +216,20 @@ function my_enqueue_scripts() {
 add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
 
 /**************************************************
+お問い合わせページを除き、「reCAPTCHA」を読み込ませない
+**************************************************/
+function load_recaptcha_js() {
+  if (!is_page('contact') && !is_page('contact-thanks')) {
+    wp_deregister_script('google-recaptcha');
+  } else {
+    wp_enqueue_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js?render=your-site-key', array(), false, false);
+  }
+}
+
+// 優先順位を「100」に指定、初期値「10」のままだと機能しない
+add_action('wp_enqueue_scripts', 'load_recaptcha_js', 100);
+
+/**************************************************
 scriptタグにtype=module属性を付与
 **************************************************/
 function add_module($tag, $handle) {

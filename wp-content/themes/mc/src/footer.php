@@ -2,10 +2,15 @@
         <footer class="footer">
           <ul class="footer__list">
             <li class="footer__item">
-              <a href="https://twitter.com/marscode48" target="_blank" rel="noopener" class="footer__link"><i class="footer__link-icon appear icon fa-brands fa-square-x-twitter"></i><span class="tween-animate-title">X-Twitter</span></a>
+              <a href="https://www.chatwork.com/marscode48" target="_blank" rel="noopener" class="footer__link appear right">
+                <img class="footer__link-logo item" src="<?php echo esc_url(get_theme_file_uri('images/footer-logo-chatwork.svg')); ?>" alt="Chatwork ロゴ">
+                <span class="tween-animate-title">Chatwork</span>
+              </a>
             </li>
             <li class="footer__item">
-              <a href="https://www.facebook.com/profile.php?id=61556793703454" target="_blank" rel="noopener" class="footer__link"><i class="footer__link-icon appear icon fa-brands fa-square-facebook"></i><span class="tween-animate-title">Facebook</span></a>
+              <a href="https://mars-code.slack.com" target="_blank" rel="noopener" class="footer__link appear right">
+                <img class="footer__link-logo item" src="<?php echo esc_url(get_theme_file_uri('images/footer-logo-slack.svg')); ?>" alt="Slack ロゴ">
+                <span class="tween-animate-title">Slack</span></a>
             </li>
           </ul>
           <div class="footer__copyright appear up">

@@ -33,7 +33,7 @@ export class MenuOpen {
 
   _initCanvas() {
     const gnavCanvas = this.DOM.canvas;
-    let particles;
+    let particles; // パーティクルの配列をグローバルに宣言
 
     const sketch = (p) => {
       p.setup = () => {
@@ -58,7 +58,7 @@ export class MenuOpen {
 
       // 円形グラデーションを生成
       function genRadialGradient() {
-        // 影をつける
+        // 影を設定
         p.drawingContext.shadowOffsetX = 5;
         p.drawingContext.shadowOffsetY = 5;
         p.drawingContext.shadowColor = p.color(242, 70, 69);
@@ -68,30 +68,30 @@ export class MenuOpen {
         const gradientFill = p.drawingContext.createRadialGradient(
           p.width / 2,
           p.height / 2,
-          p.constrain(p.mouseY * 0.1, 0, p.width * 0.1), // 開始円をマウスで操作し、終了円より大きくなるを防ぐ
+          p.constrain(p.mouseY * 0.1, 0, p.width * 0.1), // 開始円の半径をマウスで操作し、終了円より大きくならないように制限
           p.width / 2,
           p.height / 2,
           p.width * 0.35,
         );
 
-        // グラデーションの開始位置（offset）、追加するカラー
-        gradientFill.addColorStop(0, p.color(255, 0, 0));
-        gradientFill.addColorStop(0.5, p.color(255, 255, 0));
-        gradientFill.addColorStop(1, p.color(255, 0, 0, 0.5));
+        // グラデーションのカラーの追加
+        gradientFill.addColorStop(0, p.color(255, 0, 0)); // 赤
+        gradientFill.addColorStop(0.5, p.color(255, 255, 0)); // 黄
+        gradientFill.addColorStop(1, p.color(255, 0, 0, 0.5)); // 赤（透明度50%）
 
-        // グラデーションを指定
+        // グラデーションをfillStyleに指定
         p.drawingContext.fillStyle = gradientFill;
 
-        // 中心の円形グラデーションを作成
-        p.circle(p.width / 2, p.height / 2, p.width * 1.0);
+        // 中心に円形グラデーションを描画
+        p.circle(p.width / 2, p.height / 2, p.width);
       }
 
       // パーティクルを生成
       function genParticle() {
-        const interval = 10;
-        const maxParticle = 20;
+        const interval = 5;
+        const maxParticle = 25;
         const generateParticle = {
-          // 位置、速度、半径
+          // 位置、速度、半径、ライフスパン、ダメージの初期化
           init(x, y, velocityX, velocityY, radius, lifespan, damage) {
             return {
               x, y, velocityX, velocityY, radius, lifespan, damage,
@@ -102,11 +102,11 @@ export class MenuOpen {
             ptl.x += ptl.velocityX; // ランダムな速度を位置に代入
             ptl.y += ptl.velocityY; // ランダムな速度を位置に代入
             ptl.lifespan -= ptl.damage; // 毎フレームlifespanからdamageを引く
-            ptl.lifespan = p.max(ptl.lifespan); // lifespanが0以下になったら配列から削除
+            ptl.lifespan = p.max(ptl.lifespan, 0); // lifespanが0以下になったら配列から削除
           },
 
           draw(ptl) {
-            p.fill(80, 0, 90, ptl.lifespan); //  lifespanの値を透明度に設定
+            p.fill(80, 0, 90, ptl.lifespan); // lifespanの値を透明度に設定
             p.circle(ptl.x, ptl.y, ptl.radius * 2);
           },
         };
@@ -131,14 +131,14 @@ export class MenuOpen {
           addParticle();
         }
 
-        // パーティクルの配列の長さまで、変数iから個々のパーティクルを変数ptlとして取り出す
+        // パーティクルの更新と描画
         for (let i = 0; i < particles.length; i += 1) {
           const ptl = particles[i];
-          generateParticle.update(ptl); // 引数にptlを渡して個々のパーティクルの速度とライフスパンを更新
-          generateParticle.draw(ptl); // 更新したptlを実行
+          generateParticle.update(ptl); // 個々のパーティクルの速度とライフスパンを更新
+          generateParticle.draw(ptl); // 更新したパーティクルを描画
         }
 
-        // filterでlifespanが0より大きい場合はparticlesにptlを追加（ループを維持させる）
+        // lifespanが0より大きいパーティクルのみを保持
         particles = particles.filter((ptl) => ptl.lifespan > 0);
       }
 

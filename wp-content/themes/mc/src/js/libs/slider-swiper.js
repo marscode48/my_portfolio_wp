@@ -1,39 +1,13 @@
 export class HeroSlider {
   constructor(el, delay) {
     this.DOM = {};
-    this.DOM.el = el;
+    this.DOM.el = document.querySelector(el); // DOM要素に変換
     this.delay = delay;
     this.timer = null;
     this.swiper = this._initSwiper();
   }
 
   _initSwiper() {
-    // アニメーション切り替え
-    const switchAnimation = () => {
-      clearTimeout(this.timer);
-      const activeSlide = document.querySelectorAll('.works-hero .swiper-slide[class*=-active]');
-      for (let i = 0; i < activeSlide.length; i += 1) {
-        activeSlide[i].classList.remove('anm-finished');
-        activeSlide[i].classList.add('anm-started');
-      }
-
-      this.timer = setTimeout(() => {
-        for (let i = 0; i < activeSlide.length; i += 1) {
-          activeSlide[i].classList.remove('anm-started');
-          activeSlide[i].classList.add('anm-finished');
-        }
-      }, this.delay - 1000);
-    };
-
-    // アニメーション終了（手動でスライド切替された時）
-    const finishAnimation = () => {
-      const activeSlide = document.querySelectorAll('.works-hero .swiper-slide.anm-started');
-      for (let i = 0; i < activeSlide.length; i += 1) {
-        activeSlide[i].classList.remove('anm-started');
-        activeSlide[i].classList.add('anm-finished');
-      }
-    };
-
     return new Swiper(this.DOM.el, {
       effect: 'fade',
       fadeEffect: {
@@ -49,14 +23,41 @@ export class HeroSlider {
         clickable: true,
       },
       on: {
-        slideChange(swiper) {
-          finishAnimation();
+        slideChange: () => {
+          this.finishAnimation();
         },
-        slideChangeTransitionStart() {
-          switchAnimation();
+        slideChangeTransitionStart: () => {
+          this.switchAnimation();
         },
       },
     });
+  }
+
+  // アニメーション切り替え時に.anm-startedクラスを付与する
+  switchAnimation() {
+    clearTimeout(this.timer);
+    const activeSlide = this.DOM.el.querySelectorAll('.swiper-slide[class*=-active]');
+    for (let i = 0; i < activeSlide.length; i += 1) {
+      activeSlide[i].classList.remove('anm-finished');
+      activeSlide[i].classList.add('anm-started');
+    }
+
+    // delay - 1000ミリ秒の時間が経過したら、anm-finishedクラスを付与する
+    this.timer = setTimeout(() => {
+      for (let i = 0; i < activeSlide.length; i += 1) {
+        activeSlide[i].classList.remove('anm-started');
+        activeSlide[i].classList.add('anm-finished');
+      }
+    }, this.delay - 1000);
+  }
+
+  // 手動でスライドを切替された時は、.anm-finishedクラスを付与してアニメーションを終了する
+  finishAnimation() {
+    const activeSlide = this.DOM.el.querySelectorAll('.swiper-slide.anm-started');
+    for (let i = 0; i < activeSlide.length; i += 1) {
+      activeSlide[i].classList.remove('anm-started');
+      activeSlide[i].classList.add('anm-finished');
+    }
   }
 
   start(customOptions = {
@@ -64,10 +65,17 @@ export class HeroSlider {
     disableOnInteraction: false,
     waitForTransition: false,
   }) {
+    // start実行時に.anm-startedクラスを付与して画面内に入ったらアニメーションを開始させる
+    const activeSlide = this.DOM.el.querySelectorAll('.swiper-slide[class*=-active]');
+    for (let i = 0; i < activeSlide.length; i += 1) {
+      activeSlide[i].classList.remove('anm-finished');
+      activeSlide[i].classList.add('anm-started');
+    }
+
     const options = {
       delay: 4000,
       disableOnInteraction: false,
-      ...customOptions,
+      ...customOptions, // カスタムオプションをマージ
     };
 
     this.swiper.params.autoplay = options;
