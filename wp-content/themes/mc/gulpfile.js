@@ -4,10 +4,7 @@
 const { src, dest, watch, series, parallel, lastRun } = require("gulp");
 const loadPlugins = require("gulp-load-plugins");
 const $ = loadPlugins();
-const pkg = require("./package.json");
 const del = require("del");
-const conf = pkg["gulp-config"];
-const sizes = conf.sizes;
 const cssnano = require("cssnano");
 const browserSync = require("browser-sync").create();
 const isProduction = process.env.NODE_ENV === "production";
@@ -15,26 +12,6 @@ const isProduction = process.env.NODE_ENV === "production";
 //----------------------------------------------------------------------
 //  関数定義（WordPress用）distへ出力せずにテーマ直下に出力、browserSyncのproxyにLocalのサイトドメインを設定
 //----------------------------------------------------------------------
-function icon(done) {
-  for (let size of sizes) {
-    let width = size[0];
-    let height = size[1];
-    src("./favicon.png")
-      .pipe(
-        $.imageResize({
-          // width = width,
-          // height = height,
-          width,
-          height,
-          crop: true,
-          upscale: false,
-        }),
-      )
-      .pipe($.rename(`favicon-${width}x${height}.png`))
-      .pipe(dest("./images/icon"));
-  }
-  done();
-}
 
 function copyImages() {
   return src("./src/images/**", { since: lastRun(copyImages) }).pipe(
@@ -146,7 +123,6 @@ const build = series(clean, parallel(extras, styles, series(lint, scripts)));
 const serve = series(build, startAppServer);
 
 // 外部に公開してGulp CLIからタスクを実行（使用例：gulp build）
-exports.icon = icon;
 exports.copyImages = copyImages;
 exports.styles = styles;
 exports.scripts = scripts;
