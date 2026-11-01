@@ -239,7 +239,7 @@ function add_module($tag, $handle) {
   // スクリプトハンドルがモジュールハンドル配列に存在する場合
   if (in_array($handle, $module_handles, true)) {
     // <script type="text/javascript"> を <script type="module"> に変更
-    $tag = str_replace('<script type="text/javascript"', '<script type="module"', $tag);
+    $tag = str_replace('<script ', '<script type="module" ', $tag);
   }
 
   return $tag;
