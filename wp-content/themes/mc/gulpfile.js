@@ -9,7 +9,6 @@ const del = require("del");
 const conf = pkg["gulp-config"];
 const sizes = conf.sizes;
 const cssnano = require("cssnano");
-const imageminPngquant = require("imagemin-pngquant");
 const browserSync = require("browser-sync").create();
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -37,41 +36,10 @@ function icon(done) {
   done();
 }
 
-function resize() {
-  return src("./src/resize/**")
-    .pipe(
-      $.imageResize({
-        // width: 1024,
-        // height: 768,
-        // width: 1280,
-        // height: 720,
-        // width: 1600,
-        // height: 900,
-        width: 1920,
-        height: 1080,
-        crop: true,
-        upscale: false,
-      }),
-    )
-    .pipe(dest("./src/images"));
-}
-
-function imagemin() {
-  return src("./src/images/**", { since: lastRun(imagemin) })
-    .pipe(
-      $.imagemin([
-        $.imagemin.gifsicle({ interlaced: true }),
-        $.imagemin.mozjpeg({ quality: 75, progressive: true }),
-        imageminPngquant({
-          quality: [0.5, 0.6],
-          speed: 1,
-        }),
-        $.imagemin.svgo({
-          plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
-        }),
-      ]),
-    )
-    .pipe(dest("./images"));
+function copyImages() {
+  return src("./src/images/**", { since: lastRun(copyImages) }).pipe(
+    dest("./images"),
+  );
 }
 
 function styles() {
@@ -147,7 +115,6 @@ function clean() {
     "./*.png",
     "./css/**",
     "./js/**",
-    "./images/**",
     "./video/**",
     "./audio/**",
   ]);
@@ -160,7 +127,7 @@ function startAppServer() {
 
   watch("./src/sass/**/*.scss", styles);
   watch("./src/js/**/*.js", scripts);
-  watch("./src/images/**", imagemin);
+  watch("./src/images/**", copyImages);
   watch(["./src/*.html", "./src/*.php", "./src/css/**"], extras);
   watch([
     "./src/sass/**/*.scss",
@@ -175,16 +142,12 @@ function startAppServer() {
 //----------------------------------------------------------------------
 //  タスク定義
 //----------------------------------------------------------------------
-const build = series(
-  clean,
-  parallel(imagemin, extras, styles, series(lint, scripts)),
-);
+const build = series(clean, parallel(extras, styles, series(lint, scripts)));
 const serve = series(build, startAppServer);
 
 // 外部に公開してGulp CLIからタスクを実行（使用例：gulp build）
 exports.icon = icon;
-exports.resize = resize;
-exports.imagemin = imagemin;
+exports.copyImages = copyImages;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.lint = lint;
