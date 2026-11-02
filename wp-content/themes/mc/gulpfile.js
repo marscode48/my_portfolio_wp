@@ -44,14 +44,11 @@ function styles() {
 }
 
 function scripts() {
-  return (
-    src(["./src/js/**/*.js", "!./src/js/vendors/*.js"])
-      .pipe($.if(!isProduction, $.sourcemaps.init()))
-      // .pipe($.babel())
-      .pipe($.if(!isProduction, $.sourcemaps.write("./")))
-      .pipe($.if(isProduction, $.uglify()))
-      .pipe(dest("./js"))
-  );
+  return src(["./src/js/**/*.js", "!./src/js/vendors/*.js"])
+    .pipe($.if(!isProduction, $.sourcemaps.init()))
+    .pipe($.if(!isProduction, $.sourcemaps.write("./")))
+    .pipe($.if(isProduction, $.uglify()))
+    .pipe(dest("./js"));
 }
 
 function lint() {

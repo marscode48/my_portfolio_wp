@@ -10,8 +10,6 @@
     "dev": "gulp serve"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.13",
-    "@babel/preset-env": "^7.18.10",
     "babel-eslint": "^10.1.0",
     "browser-sync": "^2.27.10",
     "cross-env": "^7.0.3",
@@ -21,7 +19,6 @@
     "eslint-plugin-import": "^2.26.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
-    "gulp-babel": "^8.0.0",
     "gulp-dart-sass": "^1.0.2",
     "gulp-debug": "^4.0.0",
     "gulp-eslint": "^6.0.0",
