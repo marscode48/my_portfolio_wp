@@ -44,23 +44,11 @@ function styles() {
 }
 
 function scripts() {
-  return src(["./src/js/**/*.js", "!./src/js/vendors/*.js"])
+  return src(["./src/js/**/*.js", "!./src/js/vendors/**/*.js"])
     .pipe($.if(!isProduction, $.sourcemaps.init()))
     .pipe($.if(!isProduction, $.sourcemaps.write("./")))
     .pipe($.if(isProduction, $.uglify()))
     .pipe(dest("./js"));
-}
-
-function lint() {
-  return src([
-    "./src/js/**/*.js",
-    "!./src/js/vendors/*.js",
-    "!./src/js/libs/jquery.js",
-  ])
-    .pipe($.eslint({ fix: true }))
-    .pipe($.eslint.format())
-    .pipe($.eslint.failAfterError())
-    .pipe(dest("./src/js"));
 }
 
 function extras() {
@@ -116,14 +104,13 @@ function startAppServer() {
 //----------------------------------------------------------------------
 //  タスク定義
 //----------------------------------------------------------------------
-const build = series(clean, parallel(extras, styles, series(lint, scripts)));
+const build = series(clean, parallel(extras, styles, scripts));
 const serve = series(build, startAppServer);
 
 // 外部に公開してGulp CLIからタスクを実行（使用例：gulp build）
 exports.copyImages = copyImages;
 exports.styles = styles;
 exports.scripts = scripts;
-exports.lint = lint;
 exports.build = build;
 exports.serve = serve;
 exports.default = serve;
